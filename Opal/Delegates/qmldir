@@ -1,0 +1,5 @@
+module Opal.Delegates
+# This file is part of Opal.Delegates.
+# SPDX-FileCopyrightText: 2023 Peter G. (nephros)
+# SPDX-License-Identifier: GPL-3.0-or-later
+ThreeLineDelegate 1.0 ThreeLineDelegate.qml
