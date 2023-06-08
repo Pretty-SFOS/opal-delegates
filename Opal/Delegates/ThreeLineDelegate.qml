@@ -10,13 +10,24 @@ import Sailfish.Silica 1.0
     \inqmlmodule Opal.Delegates
     \inherits Sailfish.Silica.ListItem
 
+    A \c ListItem intended to be used in views.
+
+    It allows quickly display three lines of text data, and an icon or other indicator.
+
     Layout:
 
-    |------------------------------------------|
-    | left | line1, normal, highlight, fade
-    | item | line2, small, secondary, wrap
-    |      | line3, small, secondary, fade
-    |------------------------------------------|
+    \pre
+    |---------------------------------------------------|
+    | left | title, normal, highlight, fade | extratext
+    | item | text, small, secondary, wrap
+    |      | context, small, secondary, fade
+    |---------------------------------------------------|
+    \endpre
+
+    Properties are inherited.from 
+    \l {https://sailfishos.org/develop/docs/silica/qml-sailfishsilica-sailfish-silica-listitem.html/}{Silica.ListItem}
+    so you can use menus, actions, and all that.
+
 
 */
 
@@ -65,7 +76,7 @@ ListItem { id: root
 
     /*! \qmlproperty bool showOddEven
      *
-     * if \c true delegates will use alternating colors
+     * if \c true delegates will use alternating background colors
      *
      * \default false
      */
@@ -86,9 +97,6 @@ ListItem { id: root
 
     /*! \qmlproperty var colors
      * An array of three \c color values, overriding the defaults.
-     */
-    /*! \qmlproperty var sizes
-     * An array of three \c int values specifying font size, overriding the defaults.
      */
     property var colors: []
 
