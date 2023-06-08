@@ -133,8 +133,7 @@ ListItem { id: root
             width: parent.width
             spacing: Theme.paddingMedium
             Label { id: label1
-                width: (implicitWidth > parent.width - extraLabel.width) ? parent.width*2/3 : implicitWidth
-                //anchors.verticalCenter: parent.verticalCenter
+                width: (extra.text.length > 0) ? parent.width*3/4 : parent.width
                 text: line1.text;
                 color:          !!line1.color ? line1.color : Theme.highlightColor;
                 font.pixelSize: !!line1.size  ? line1.size  : Theme.fontSizeNormal;
@@ -144,6 +143,8 @@ ListItem { id: root
             }
             Label { id: extraLabel
                 anchors.bottom: label1.bottom
+                anchors.verticalCenter: label1.verticalCenter
+                width: (extra.text.length > 0) ? parent.width*1/4 : implicitWidth
                 text: extra.text;
                 color:          !!extra.color ? extra.color : Theme.primaryColor;
                 font.pixelSize: !!extra.size  ? extra.size  : Theme.fontSizeNormal;
