@@ -37,7 +37,7 @@ function copy_files() {
 
     # We don't have to distribute the extra translations dummy file, as translations
     # are built separately and are merged if needed.
-    rm "$QML_BASE/Opal/About/private/ExtraTranslations.qml"
+    rm "$QML_BASE/Opal/Delegates/private/ExtraTranslations.qml"
 
     # Generate a default attribution file that can be directly used in projects.
     # No documentation will be generate for this file because it only exists in
@@ -54,7 +54,7 @@ function copy_files() {
         "    licenses: License { spdxId: \"${cMETADATA[mainLicenseSpdx]}\"}" \
         "    sources: \"https://github.com/Pretty-SFOS/${cMETADATA[fullName]}\"" \
         "    homepage: \"https://github.com/Pretty-SFOS/opal\"" \
-        "}" "" > "$QML_BASE/Opal/About/OpalAboutAttribution.qml"
+        "}" "" > "$QML_BASE/Opal/Delegates/OpalDelegatesAttribution.qml"
 }
 
 # build the bundle
