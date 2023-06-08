@@ -18,6 +18,20 @@ S.Page {
         ListElement { name: "A basket full of exotic fruits"; price: "15.99"; desc: "fruits!"; note: "Suitable as a generous gift\nBuy now!" }
         ListElement { name: "Nut"; price: "0.99"; desc: ""; note: "not a fruit."}
     }
+
+    Component {id: cmenu
+        S.ContextMenu {
+            S.MenuItem {
+                text: qsTr("Add to Shopping Basket")
+                onClicked: S.Remorse.itemAction(
+                    parent.parent.parent,
+                    qsTr("Added"),
+                    function(){},
+                    2000
+                )
+            }
+        }
+    }
     S.SilicaFlickable { id: flickable
         anchors.fill: parent
         contentHeight: column.height
@@ -42,6 +56,7 @@ S.Page {
                     extratext: price
                     leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
                     showOddEven: true
+                    menu: cmenu
                 }
             }
             S.SectionHeader{ text: "ThreeLineDelegate"}
@@ -61,6 +76,7 @@ S.Page {
                     extratext: price
                     leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
                     //showOddEven: true
+                    menu: cmenu
                 }
             }
             S.Label {
@@ -80,6 +96,7 @@ S.Page {
                     leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
                     colors: [ S.Theme.primaryColor, "darkorange", S.Theme.highlightDimmerColor ]
                     //showOddEven: true
+                    menu: cmenu
                 }
             }
         }
