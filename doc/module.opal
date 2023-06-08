@@ -27,7 +27,7 @@ description: This module provides <i>Delegates</i> for use in QML views.
 
 # attribution string for the whole module, in the same form as a SPDX
 # FileCopyrightText entry.
-attribution: 2023 Peter.G (nephros)
+attribution: 2023 Peter G (nephros)
 
 # colon-separated list of this module's current maintainer(s)
 maintainers: ichthyosaurus;nephros
