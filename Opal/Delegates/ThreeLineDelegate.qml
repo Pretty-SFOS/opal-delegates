@@ -30,6 +30,7 @@ ListItem { id: root
      * formatted as highlighted color, normal font size.
      * the text will fade if too long
      */
+
     /*! \qmlproperty string text
      *
      * the second line of text.
@@ -37,6 +38,7 @@ ListItem { id: root
      * formatted as secondary color, small font size.
      * the text will wrap if too long
      */
+
     /*! \qmlproperty string context
      *
      * the third line of text.
@@ -49,8 +51,8 @@ ListItem { id: root
      *
      * an optional smaller text to the right of the first line (such as "online" for a user)
      */
-    property alias title: line1.text
-    property alias text: line2.text
+    property alias title:   line1.text
+    property alias text:    line2.text
     property alias context: line3.text
     property alias extratext: extra.text
 
@@ -61,7 +63,7 @@ ListItem { id: root
      */
     property Component leftItem: null
 
-    /*! \qml property bool showOddEven
+    /*! \qmlproperty bool showOddEven
      *
      * if \c true delegates will use alternating colors
      *
@@ -81,7 +83,26 @@ ListItem { id: root
         border.color: "transparent"
         border.width: radius/2
     }
+
+    /*! \qmlproperty var colors
+     * An array of three \c color values, overriding the defaults.
+     */
+    /*! \qmlproperty var sizes
+     * An array of three \c int values specifying font size, overriding the defaults.
+     */
+    property var colors: []
+
     property bool amThreeLine: true
+
+    Component.onCompleted: {
+        var num = amThreeLine ? 3 : 2
+        if ( !!colors && colors.length === num) {
+            line1.color = colors[0];
+            line2.color = colors[1];
+            if (amThreeLine)
+                line3.color = colors[2];
+        }
+    }
 
     QtObject{ id: line1; property string text: ""; property color color: Theme.highlightColor; property int size: Theme.fontSizeMedium }
     QtObject{ id: line2; property string text: ""; property color color: Theme.secondaryColor; property int size: Theme.fontSizeSmall }

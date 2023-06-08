@@ -1,7 +1,7 @@
 /*
  * This file is part of harbour-opal.
  * SPDX-License-Identifier: GPL-3.0-or-later
- * SPDX-FileCopyrightText: 2020-2023 Mirian Margiani
+ * SPDX-FileCopyrightText: 2023 Peter G. (nephros)
  */
 
 import QtQuick 2.0
@@ -22,23 +22,18 @@ S.Page {
         anchors.fill: parent
         contentHeight: column.height
         Column{ id: column
-            width: parent.width
+            width: parent.width - S.Theme.horizontalPageMargin
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: S.Theme.paddingLarge
             S.PageHeader{ title: "Opal Delegates"}
-            S.SectionHeader{ text: "ThreeLineDelegate"}
-            S.ColumnView { id: view
-                itemHeight: S.Theme.itemSizeLarge
-                model: mymodel
-                delegate: D.ThreeLineDelegate {
-                    title: name
-                    text: note
-                    context: desc
-                    extratext: price
-                    leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
-                    showOddEven: true
-                }
-            }
             S.SectionHeader{ text: "TwoLineDelegate"}
-            S.ColumnView { id: view2
+            S.Label {
+                width: parent.width
+                wrapMode: Text.Wrap
+                color: S.Theme.highlightColor
+                text: qsTr("A list of things, information in two lines, odd/even elements marked.")
+            }
+            S.ColumnView {
                 itemHeight: S.Theme.itemSizeLarge
                 model: mymodel
                 delegate: D.TwoLineDelegate {
@@ -49,15 +44,44 @@ S.Page {
                     showOddEven: true
                 }
             }
+            S.SectionHeader{ text: "ThreeLineDelegate"}
+            S.Label {
+                width: parent.width
+                wrapMode: Text.Wrap
+                color: S.Theme.highlightColor
+                text: qsTr("A list of things, information in three lines, no marking of odd/even elements.")
+            }
+            S.ColumnView {
+                itemHeight: S.Theme.itemSizeLarge
+                model: mymodel
+                delegate: D.ThreeLineDelegate {
+                    title: name
+                    text: note
+                    context: desc
+                    extratext: price
+                    leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
+                    //showOddEven: true
+                }
+            }
+            S.Label {
+                width: parent.width
+                wrapMode: Text.Wrap
+                color: S.Theme.highlightColor
+                text: qsTr("Same as above, customized colors.")
+            }
+            S.ColumnView {
+                itemHeight: S.Theme.itemSizeLarge
+                model: mymodel
+                delegate: D.ThreeLineDelegate {
+                    title: name
+                    text: note
+                    context: desc
+                    extratext: price
+                    leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
+                    colors: [ S.Theme.primaryColor, "darkorange", S.Theme.highlightDimmerColor ]
+                    //showOddEven: true
+                }
+            }
         }
-        /*
-               S.PullDownMenu {
-parent: page.flickable
-S.MenuItem {
-text: qsTr("Open another page")
-onClicked: pageStack.push(Qt.resolvedUrl("EmptyDummyPage.qml"))
-}
-}
-*/
     }
 }
