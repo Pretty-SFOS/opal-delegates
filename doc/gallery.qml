@@ -6,24 +6,33 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0 as S
-import Opal.Delegates 1.0 as D
+//import Opal.Delegates 1.0 as D
+import "../Opal/Delegates" as D
 
-Page {
+S.Page {
     id: page
 
     ListModel { id: mymodel
-        ListElement { name: "apple"; price: "2.95"; desc: "a juicy fruit!; note: "A is for Apple" }
+        ListElement { name: "Apple"; price: "2.95"; desc: "a juicy fruit!"; note: "A is for Apple" }
+        ListElement { name: "Banana"; price: "1.05"; desc: "a yellow fruit!"; note: "Oh| Banana!" }
+        ListElement { name: "A basket full of exotic fruits"; price: "15.99"; desc: "fruits!"; note: "Suitable as a generous gift\nBuy now!" }
     }
-    S.SilicaColumnView {
+    S.SilicaFlickable { id: flickable
+        anchors.fill: parent
+        S.ColumnView { id: view
             anchors.fill: parent
+            itemHeight: S.Theme.itemSizeLarge*2
             model: mymodel
             delegate: D.ThreeLineDelegate {
-                    line1.text: name
-                    line2.text: desc
-                    line3.text: note
-                    extratext: price
+                text1: name
+                text2: desc
+                text3: note
+                extratext: price
+                leftItem: S.Icon{ source: "image://theme/icon-m-play" }
             }
+        }
     }
+    /*
     S.PullDownMenu {
         parent: page.flickable
         S.MenuItem {
@@ -31,4 +40,5 @@ Page {
             onClicked: pageStack.push(Qt.resolvedUrl("EmptyDummyPage.qml"))
         }
     }
+    */
 }
