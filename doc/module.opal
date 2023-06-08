@@ -23,7 +23,7 @@ nameStyled: Delegates
 
 # description of this module: may use rich text and will be translated in
 # Opal Gallery. Line breaks can included with '\n' but should be avoided.
-description: This module provides <i>AboutPageBase</i> for building customizable application information pages.
+description: This module provides <i>Delegates</i> for use in QML views.
 
 # attribution string for the whole module, in the same form as a SPDX
 # FileCopyrightText entry.

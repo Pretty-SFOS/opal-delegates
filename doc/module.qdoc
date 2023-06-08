@@ -7,10 +7,9 @@
 // brief description etc. This file cannot be generated.
 
 /*!
-    \qmlmodule Opal.About
-    \title Opal.About
-    \brief Module for building app info pages
+    \qmlmodule Opal.Delegates
+    \title Opal.Delegates
+    \brief Module providing view delegates
 
-    This module provides \c AboutPageBase for building customizable application
-    information pages.
+    This module provides \c TwoLineDelegate and \c ThreeLineDelegate for use in QML views.
 */
