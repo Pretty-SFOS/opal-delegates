@@ -64,7 +64,7 @@ ListItem { id: root
      */
     /*! \qmlproperty string extratext
 
-       an optional smaller text to the right of the first line (such as
+       An optional smaller text to the right of the first line (such as
        "online" for a user)
 
      */
@@ -93,7 +93,7 @@ ListItem { id: root
     Rectangle { id: oddevenrect
         anchors.fill: parent
         radius: Theme.paddingSmall
-        opacity: 0.2
+        opacity: Theme.opacityFaint
         color: showOddEven ?
                     isOdd ? oddColor : evenColor
             : "transparent"
