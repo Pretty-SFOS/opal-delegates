@@ -10,7 +10,7 @@ import Sailfish.Silica 1.0
     \inqmlmodule Opal.Delegates
     \inherits Sailfish.Silica.ListItem
 
-    A \c ListItem intended to be used in views.
+    \brief A \c ListItem intended to be used in views.
 
     It allows quickly display three lines of text data, and an icon or other indicator.
 
