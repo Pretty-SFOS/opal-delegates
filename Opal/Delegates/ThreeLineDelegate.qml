@@ -35,32 +35,38 @@ import Sailfish.Silica 1.0
 ListItem { id: root
 
     /*! \qmlproperty string title
-     *
-     * the first line of text.
-     *
-     * formatted as highlighted color, normal font size.
-     * the text will fade if too long
+
+       The first line of text.
+
+       Formatted as highlighted color, normal font size.
+       The text will fade if too long.
      */
 
     /*! \qmlproperty string text
-     *
-     * the second line of text.
-     *
-     * formatted as secondary color, small font size.
-     * the text will wrap if too long
+
+       The second line of text.
+
+       Formatted as secondary color, small font size.
+       The text will wrap if too long
+
+       Note: the item size is designed to show two lines here. If the text is
+       longer, height will expand, but that may look ugly in your list.
+
      */
 
     /*! \qmlproperty string context
-     *
-     * the third line of text.
-     *
-     * formatted as secondary color, small font size.
-     * the text will fade if too long
-     *
+
+       The third line of text.
+
+       Formatted as secondary color, small font size.
+       The text will fade if too long
+
      */
     /*! \qmlproperty string extratext
-     *
-     * an optional smaller text to the right of the first line (such as "online" for a user)
+
+       an optional smaller text to the right of the first line (such as
+       "online" for a user)
+
      */
     property alias title:   line1.text
     property alias text:    line2.text
@@ -68,17 +74,17 @@ ListItem { id: root
     property alias extratext: extra.text
 
     /*! \qmlproperty Component leftItem
-     *
-     * an Item such as an Icon displayed on the left side of the Delegate
-     *
+
+       An Item such as an Icon displayed on the left side of the Delegate
+
      */
     property Component leftItem: null
 
     /*! \qmlproperty bool showOddEven
-     *
-     * if \c true delegates will use alternating background colors
-     *
-     * \default false
+
+       If \c true delegates will use alternating background colors
+
+       \default false
      */
     property bool showOddEven: false
     property bool isOdd: (index %2 != 0)
@@ -96,7 +102,9 @@ ListItem { id: root
     }
 
     /*! \qmlproperty var colors
-     * An array of three \c color values, overriding the defaults.
+
+       An array of three \c color values, overriding the defaults.
+
      */
     property var colors: []
 
@@ -110,6 +118,15 @@ ListItem { id: root
             if (amThreeLine)
                 line3.color = colors[2];
         }
+
+    /*
+    console.debug(title,
+    'height', height,
+    'cheight', content.height,
+    'sheight', Theme.itemSizeSmall,
+    'mheight', Theme.itemSizeMedium,
+    'lheight', Theme.itemSizeLarge)
+    */
     }
 
     // TODO: do these make sense at all?
@@ -118,7 +135,7 @@ ListItem { id: root
     QtObject{ id: line3; property string text: ""; property color color: Theme.secondaryColor; property int size: Theme.fontSizeTiny }
     QtObject{ id: extra; property string text: ""; property color color: Theme.primaryColor; property int size: Theme.fontSizeTiny }
 
-    contentHeight: content.height
+    contentHeight: Math.max(content.height, Theme.itemSizeMedium)
     Loader { id: leftItemLoader
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
