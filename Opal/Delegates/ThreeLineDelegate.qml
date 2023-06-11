@@ -10,9 +10,9 @@ import Sailfish.Silica 1.0
     \inqmlmodule Opal.Delegates
     \inherits Sailfish.Silica.ListItem
 
-    \brief A \c ListItem intended to be used in views.
+    \brief Provides a \c ListItem intended to be used in views.
 
-    It allows quickly display three lines of text data, and an icon or other indicator.
+    It allows quick display of three lines of text data, and an icon or other indicator.
 
     Layout:
 
@@ -23,6 +23,20 @@ import Sailfish.Silica 1.0
     |      | context, small, secondary, fade
     |---------------------------------------------------|
     \endpre
+    \qml
+            ColumnView {
+                itemHeight: Theme.itemSizeLarge
+                model: mymodel
+                delegate: ThreeLineDelegate {
+                    title: nickName
+                    text: messageText
+                    context: chatGroup
+                    extratext: onlineStatus
+                    leftItem: Icon{ source: "image://theme/icon-m-chat" }
+                    menu: cmenu
+                }
+            }
+    \endqml
 
     Properties are inherited from 
     \l {https://sailfishos.org/develop/docs/silica/qml-sailfishsilica-sailfish-silica-listitem.html/}{Silica.ListItem}
