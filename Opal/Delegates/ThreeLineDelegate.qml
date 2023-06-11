@@ -24,7 +24,7 @@ import Sailfish.Silica 1.0
     |---------------------------------------------------|
     \endpre
 
-    Properties are inherited.from 
+    Properties are inherited from 
     \l {https://sailfishos.org/develop/docs/silica/qml-sailfishsilica-sailfish-silica-listitem.html/}{Silica.ListItem}
     so you can use menus, actions, and all that.
 
