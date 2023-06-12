@@ -101,16 +101,29 @@ ListItem { id: root
        \default false
      */
     property bool showOddEven: false
-    property bool isOdd: (index %2 != 0)
+
+    /*! \qmlproperty color oddColor
+
+       Background color for odd elements.
+
+       \default \c "transparent"
+     */
+     /*! \qmlproperty color evenColor
+
+       Background color for even elements.
+
+       \default \c Theme.highlightBackgroundColor
+     */
     property color oddColor: "transparent"
     property color evenColor: Theme.highlightBackgroundColor
+
+    property bool isOdd: (index %2 != 0)
     Rectangle { id: oddevenrect
         anchors.fill: parent
+        visible: showOddEven
         radius: Theme.paddingSmall
         opacity: Theme.opacityFaint
-        color: showOddEven ?
-                    isOdd ? oddColor : evenColor
-            : "transparent"
+        color: isOdd ? oddColor : evenColor
         border.color: "transparent"
         border.width: radius/2
     }
