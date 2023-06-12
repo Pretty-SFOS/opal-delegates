@@ -19,6 +19,13 @@ S.Page {
         ListElement { name: "Nut"; price: "0.99"; desc: ""; note: "not a fruit."}
     }
 
+    ListModel { id: chatmodel
+        ListElement { nick: "SamGee"; status: "online";   when: "yesterday"; post: "@mrunderhill: are there any taters left?" }
+        ListElement { nick: "Sauron"; status: "busy";     when: "3rd age"; post: "You cannot hide. I see you. There is no life in the void. Only death." }
+        ListElement { nick: "Aragorn"; status: "away";    when: "mid-day"; post: "Not idly do the leaves of Lorien fall..." }
+    }
+
+
     Component {id: cmenu
         S.ContextMenu {
             S.MenuItem {
@@ -75,7 +82,6 @@ S.Page {
                     context: desc
                     extratext: price
                     leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
-                    //showOddEven: true
                     menu: cmenu
                 }
             }
@@ -83,20 +89,27 @@ S.Page {
                 width: parent.width
                 wrapMode: Text.Wrap
                 color: S.Theme.highlightColor
-                text: qsTr("Same as above, customized colors.")
+                text: qsTr("A conversation view using customized colors.")
             }
             S.ColumnView {
                 itemHeight: S.Theme.itemSizeLarge
-                model: mymodel
+                model: chatmodel
                 delegate: D.ThreeLineDelegate {
-                    title: name
-                    text: note
-                    context: desc
-                    extratext: price
-                    leftItem: S.Icon{ source: "image://theme/icon-m-favorite" }
-                    colors: [ S.Theme.primaryColor, "darkorange", S.Theme.highlightDimmerColor ]
-                    //showOddEven: true
-                    menu: cmenu
+                    title: nick
+                    text: post
+                    context: when
+                    extratext: status
+                    leftItem: S.Icon{
+                        width: S.Theme.iconSizeMedium
+                        height: S.Theme.iconSizeMedium
+                        source: (nick === "Sauron")
+                            ? "image://theme/icon-splus-show-password?" + "darkorange"
+                            : "image://theme/icon-m-chat" }
+                    colors: [
+                        S.Theme.primaryColor,
+                        "darkorange",
+                        S.Theme.highlightDimmerColor
+                    ]
                 }
             }
         }
