@@ -24,8 +24,8 @@ import Sailfish.Silica 1.0
     |---------------------------------------------------|
     \endpre
     \qml
-            ColumnView {
-                itemHeight: Theme.itemSizeLarge
+        Column {
+            Repeater {
                 model: mymodel
                 delegate: ThreeLineDelegate {
                     title: nickName
@@ -33,12 +33,12 @@ import Sailfish.Silica 1.0
                     context: chatGroup
                     extratext: onlineStatus
                     leftItem: Icon{ source: "image://theme/icon-m-chat" }
-                    menu: cmenu
                 }
             }
+        }
     \endqml
 
-    Properties are inherited from 
+    Properties are inherited from
     \l {https://sailfishos.org/develop/docs/silica/qml-sailfishsilica-sailfish-silica-listitem.html/}{Silica.ListItem}
     so you can use menus, actions, and all that.
 
@@ -153,7 +153,10 @@ ListItem { id: root
     QtObject{ id: line3; property string text: ""; property color color: Theme.secondaryColor; property int size: Theme.fontSizeTiny }
     QtObject{ id: extra; property string text: ""; property color color: Theme.primaryColor; property int size: Theme.fontSizeTiny }
 
-    contentHeight: Math.max(content.height, amThreeLine ? Theme.itemSizeMedium : Theme.itemSizeSmall)
+    contentHeight: Math.max(
+        content.height,
+        amThreeLine ? Theme.itemSizeMedium : Theme.itemSizeSmall
+    )
 
     Loader { id: leftItemLoader
         anchors.left: parent.left
