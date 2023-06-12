@@ -153,7 +153,7 @@ ListItem { id: root
     QtObject{ id: line3; property string text: ""; property color color: Theme.secondaryColor; property int size: Theme.fontSizeTiny }
     QtObject{ id: extra; property string text: ""; property color color: Theme.primaryColor; property int size: Theme.fontSizeTiny }
 
-    contentHeight: Math.max(content.height, Theme.itemSizeMedium)
+    contentHeight: Math.max(content.height, amThreeLine ? Theme.itemSizeMedium : Theme.itemSizeSmall)
 
     Loader { id: leftItemLoader
         anchors.left: parent.left
