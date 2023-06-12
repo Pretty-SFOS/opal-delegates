@@ -130,7 +130,7 @@ ListItem { id: root
 
     /*! \qmlproperty var colors
 
-       An array of three \c color values, overriding the defaults.
+       An array of three \c color values, overriding the defaults for the text color.
 
      */
     property var colors: []
@@ -145,15 +145,6 @@ ListItem { id: root
             if (amThreeLine)
                 line3.color = colors[2];
         }
-
-    /*
-    console.debug(title,
-    'height', height,
-    'cheight', content.height,
-    'sheight', Theme.itemSizeSmall,
-    'mheight', Theme.itemSizeMedium,
-    'lheight', Theme.itemSizeLarge)
-    */
     }
 
     // TODO: do these make sense at all?
@@ -163,6 +154,7 @@ ListItem { id: root
     QtObject{ id: extra; property string text: ""; property color color: Theme.primaryColor; property int size: Theme.fontSizeTiny }
 
     contentHeight: Math.max(content.height, Theme.itemSizeMedium)
+
     Loader { id: leftItemLoader
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
@@ -170,10 +162,13 @@ ListItem { id: root
         sourceComponent: leftItem
         width: height
     }
+
     Column { id: content
         anchors.left: leftItemLoader.right
         anchors.right: parent.right
-        anchors.verticalCenter: (leftItemLoader.height > 0) ? leftItemLoader.verticalCenter : parent.verticalCenter
+        anchors.verticalCenter: (leftItemLoader.height > 0)
+            ? leftItemLoader.verticalCenter
+            : parent.verticalCenter
         Row {
             width: parent.width
             spacing: Theme.paddingMedium
