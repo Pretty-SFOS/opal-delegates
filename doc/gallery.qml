@@ -1,6 +1,6 @@
 /*
  * This file is part of harbour-opal.
- * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-License-Identifier: Apache-2.0
  * SPDX-FileCopyrightText: 2023 Peter G. (nephros)
  */
 
