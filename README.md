@@ -3,10 +3,10 @@ SPDX-FileCopyrightText: 2023 Peter G. (nephros)
 SPDX-License-Identifier: GFDL-1.3-or-later
 -->
 
-# Three-line delegate item for Sailfish apps
+# Delegate Components for Sailfish apps
 
-A handy List Item to be used as a delegate in views, so you can concentrate on
-the data, not the presentation.
+A handy collection of ListItems to be used as a delegate in views, so you can
+concentrate on handling the data, not formatting the presentation.
 
 ## Screenshots
 
@@ -45,8 +45,8 @@ Follow the main documentation for installing Opal modules
 
 ### Configuration
 
-See [`doc/gallery.qml`](doc/gallery.qml) for an example. Copy the file to get
-started.
+See [`doc/gallery.qml`](doc/gallery.qml) for some examples.
+
 
 ### Documentation
 
