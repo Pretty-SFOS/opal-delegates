@@ -39,6 +39,11 @@ S.Page {
             }
         }
     }
+    Component {id: rmenu
+        S.ContextMenu {
+            S.MenuItem { text: qsTr("Reply") }
+        }
+    }
     S.SilicaFlickable { id: flickable
         anchors.fill: parent
         contentHeight: column.height
@@ -105,11 +110,35 @@ S.Page {
                         source: (nick === "Sauron")
                             ? "image://theme/icon-splus-show-password?" + "darkorange"
                             : "image://theme/icon-m-chat" }
+                    menu: rmenu
                     colors: [
                         S.Theme.primaryColor,
                         "darkorange",
                         S.Theme.highlightDimmerColor
                     ]
+                }
+            }
+            S.SectionHeader{ text: "CompactDelegate"}
+            S.Label {
+                width: parent.width
+                wrapMode: Text.Wrap
+                color: S.Theme.highlightColor
+                text: qsTr("A compact conversation view.")
+            }
+            S.ColumnView {
+                itemHeight: S.Theme.itemSizeSmall
+                model: chatmodel
+                delegate: D.CompactDelegate {
+                    title: nick
+                    text: post
+                    context: status
+                    leftItem: S.Icon{
+                        width: S.Theme.iconSizeSmall
+                        height: S.Theme.iconSizeSmall
+                        source: (nick === "Sauron")
+                            ? "image://theme/icon-splus-show-password?" + "darkorange"
+                            : "image://theme/icon-m-chat" }
+                    menu: rmenu
                 }
             }
         }
