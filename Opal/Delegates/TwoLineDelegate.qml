@@ -13,12 +13,7 @@ import QtQuick 2.0
 
     It allows quick display two lines of text data, and an icon or other indicator.
 
-    Properties are inherited from 
-    \l {https://sailfishos.org/develop/docs/silica/qml-sailfishsilica-sailfish-silica-listitem.html/}{Silica.ListItem}
-    so you can use menus, actions, and all that.
-
     \sa ThreeLineDelegate
-
 */
 
 ThreeLineDelegate {

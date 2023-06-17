@@ -8,7 +8,7 @@ import Sailfish.Silica 1.0
 
 /*! \qmltype ThreeLineDelegate
     \inqmlmodule Opal.Delegates
-    \inherits Sailfish.Silica.ListItem
+    \inherits ListDelegateBase
 
     \brief Provides a \c ListItem intended to be used in views.
 
@@ -38,15 +38,10 @@ import Sailfish.Silica 1.0
         }
     \endqml
 
-    Properties are inherited from
-    \l {https://sailfishos.org/develop/docs/silica/qml-sailfishsilica-sailfish-silica-listitem.html/}{Silica.ListItem}
-    so you can use menus, actions, and all that.
-
-
 */
 
 
-ListItem { id: root
+ListDelegateBase { id: root
 
     /*! \qmlproperty string title
 
@@ -86,54 +81,6 @@ ListItem { id: root
     property alias text:    line2.text
     property alias context: line3.text
     property alias extratext: extra.text
-
-    /*! \qmlproperty Component leftItem
-
-       An Item such as an Icon displayed on the left side of the Delegate
-
-     */
-    property Component leftItem: null
-
-    /*! \qmlproperty bool showOddEven
-
-       If \c true delegates will use alternating background colors
-
-       \default false
-     */
-    property bool showOddEven: false
-
-    /*! \qmlproperty color oddColor
-
-       Background color for odd elements.
-
-       \default \c "transparent"
-     */
-     /*! \qmlproperty color evenColor
-
-       Background color for even elements.
-
-       \default \c Theme.highlightBackgroundColor
-     */
-    property color oddColor: "transparent"
-    property color evenColor: Theme.highlightBackgroundColor
-
-    property bool isOdd: (index %2 != 0)
-    Rectangle { id: oddevenrect
-        anchors.fill: parent
-        visible: showOddEven
-        radius: Theme.paddingSmall
-        opacity: Theme.opacityFaint
-        color: isOdd ? oddColor : evenColor
-        border.color: "transparent"
-        border.width: radius/2
-    }
-
-    /*! \qmlproperty var colors
-
-       An array of three \c color values, overriding the defaults for the text color.
-
-     */
-    property var colors: []
 
     property bool amThreeLine: true
 
