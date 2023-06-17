@@ -17,7 +17,7 @@ ListItem { id: root
 
     /*! \qmlproperty var colors
 
-       An array of \c color values, overriding the defaults for the text colors.
+       \brief An array of \c color values, overriding the defaults for the text colors.
 
      */
     property var colors: []
@@ -25,7 +25,7 @@ ListItem { id: root
 
     /*! \qmlproperty bool showOddEven
 
-       If \c true delegates will use alternating background colors
+       \brief If \c true delegates will use alternating background colors
 
        \default false
      */
@@ -33,13 +33,13 @@ ListItem { id: root
 
     /*! \qmlproperty color oddColor
 
-       Background color for odd elements.
+       \brief Background color for odd elements.
 
        \default \c "transparent"
      */
      /*! \qmlproperty color evenColor
 
-       Background color for even elements.
+       \brief Background color for even elements.
 
        \default \c Theme.highlightBackgroundColor
      */
@@ -58,7 +58,7 @@ ListItem { id: root
     }
     /*! \qmlproperty Component leftItem
 
-    An Item such as an Icon displayed on the left side of the Delegate
+        \brief An Item such as an Icon displayed on the left side of the Delegate
 
     */
     property Component leftItem: null

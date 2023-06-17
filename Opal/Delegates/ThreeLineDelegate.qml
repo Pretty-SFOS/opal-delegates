@@ -45,7 +45,7 @@ ListDelegateBase { id: root
 
     /*! \qmlproperty string title
 
-       The first line of text.
+       \brief The first line of text.
 
        Formatted as highlighted color, normal font size.
        The text will fade if too long.
@@ -53,7 +53,7 @@ ListDelegateBase { id: root
 
     /*! \qmlproperty string text
 
-       The second line of text.
+       \brief The second line of text.
 
        Formatted as secondary color, small font size.
        The text will wrap if too long
@@ -65,7 +65,7 @@ ListDelegateBase { id: root
 
     /*! \qmlproperty string context
 
-       The third line of text.
+       \brief The third line of text.
 
        Formatted as secondary color, small font size.
        The text will fade if too long
@@ -73,7 +73,7 @@ ListDelegateBase { id: root
      */
     /*! \qmlproperty string extratext
 
-       An optional smaller text to the right of the first line (such as
+       \brief An optional smaller text to the right of the first line (such as
        "online" for a user)
 
      */

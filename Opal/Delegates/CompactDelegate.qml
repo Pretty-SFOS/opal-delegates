@@ -42,18 +42,26 @@ ListDelegateBase { id: root
 
     /*! \qmlproperty string title
 
-       The left part of the first line of text.
+       \brief The left part of the first line of text.
 
        Formatted as secondary highlighted color, small font size.
      */
 
     /*! \qmlproperty string text
 
-       The right part of the first line of text.
+       \brief The right part of the first line of text.
 
        Formatted as primary color, small font size.
        The text will fade if too long.
 
+     */
+
+    /*! \qmlproperty string context
+
+       \brief The second line of text.
+
+       Formatted as secondary color, tiny font size.
+       The text will wrap if too long.
      */
 
     property alias title:   line1.text
@@ -97,7 +105,6 @@ ListDelegateBase { id: root
                 font.pixelSize: !!line1.size  ? line1.size  : Theme.fontSizeSmall;
                 wrapMode:       Text.NoWrap
                 truncationMode: TruncationMode.Fade
-
             }
             Label { id: extraLabel
                 width:  parent.width - label1.width - parent.spacing
@@ -116,7 +123,6 @@ ListDelegateBase { id: root
             color:          !!line2.color ? line2.color : Theme.secondaryColor;
             font.pixelSize: !!line2.size  ? line2.size  : Theme.fontSizeSmall;
             wrapMode:       Text.Wrap
-
         }
     }
 }
