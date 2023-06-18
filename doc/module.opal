@@ -11,7 +11,7 @@
 #
 
 # current semantic version number, cf. https://semver.org
-version: 1.0.0
+version: 2.0.0
 
 # plain name as used in the module repository URL, will be prefixed with "opal-"
 # where necessary
@@ -37,7 +37,7 @@ maintainers: ichthyosaurus;nephros
 authors: ichthyosaurus;nephros
 
 # the module's SPDX license id, cf. https://spdx.org/licenses/
-mainLicenseSpdx: Apache-2.0
+mainLicenseSpdx: GPL-3.0-or-later
 
 # The main example page to be used in Opal Gallery is doc/gallery.qml.
 # Additional pages must be placed in a directory called "doc/gallery" and listed
