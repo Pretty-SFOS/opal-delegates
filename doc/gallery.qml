@@ -49,18 +49,21 @@ S.Page {
             status: qsTr("online")
             when: qsTr("yesterday")
             post: qsTr("@mrunderhill: are there any taters left?")
+            statusType: "online"
         }
         ListElement {
             nick: qsTr("Sauron")
             status: qsTr("busy")
             when: qsTr("3rd age")
             post: qsTr("You cannot hide. I see you. There is no life in the void. Only death.")
+            statusType: "busy"
         }
         ListElement {
             nick: qsTr("Aragorn")
             status: qsTr("away")
             when: qsTr("mid-day")
             post: qsTr("Not idly do the leaves of Lorien fall...")
+            statusType: "away"
         }
     }
 
@@ -70,9 +73,7 @@ S.Page {
         S.ContextMenu {
             S.MenuItem {
                 text: qsTr("Add to Shopping Basket")
-                onClicked: S.Remorse.itemAction(
-                    parent.parent.parent, qsTr("Added"),
-                    function () {}, 2000)
+                onClicked: pageStack.push("EmptyDummyPage.qml")
             }
         }
     }
@@ -83,6 +84,7 @@ S.Page {
         S.ContextMenu {
             S.MenuItem {
                 text: qsTr("Reply")
+                onClicked: pageStack.push("EmptyDummyPage.qml")
             }
         }
     }
@@ -139,7 +141,7 @@ S.Page {
                     delegate: D.TwoLineDelegate {
                         title: name
                         text: note
-                        extratext: price
+                        hint: price
                         leftItem: S.Icon {
                             source: "image://theme/icon-m-favorite"
                         }
@@ -179,49 +181,12 @@ S.Page {
                         title: name
                         text: note
                         context: desc
-                        extratext: price
+                        hint: price
                         leftItem: S.Icon {
                             source: "image://theme/icon-m-favorite"
                         }
                         showOddEven: emphasizeRowsSecond.checked
                         menu: fruitMenu
-                    }
-                }
-            }
-
-            S.SectionHeader {
-                text: "Custom colors"
-            }
-
-            S.Label {
-                x: S.Theme.horizontalPageMargin
-                width: parent.width - 2*x
-                wrapMode: Text.Wrap
-                color: S.Theme.secondaryHighlightColor
-                font.pixelSize: S.Theme.fontSizeSmall
-                text: qsTr("Colors for each line can be freely customized. However, " +
-                           "colors that do not follow Silica styling should be used " +
-                           "rarely and with care.")
-            }
-
-            Column {
-                width: parent.width
-
-                Repeater {
-                    model: chatModel
-                    delegate: D.ThreeLineDelegate {
-                        title: nick
-                        text: post
-                        context: when
-                        extratext: status
-                        leftItem: S.Icon {
-                            width: S.Theme.iconSizeMedium
-                            height: S.Theme.iconSizeMedium
-                            source: (nick === "Sauron") ? "image://theme/icon-splus-show-password?"
-                                                          + "darkorange" : "image://theme/icon-m-chat"
-                        }
-                        menu: chatMenu
-                        colors: [S.Theme.primaryColor, "darkorange", S.Theme.highlightDimmerColor]
                     }
                 }
             }
@@ -255,6 +220,51 @@ S.Page {
                                                       + "darkorange" : "image://theme/icon-m-chat"
                     }
                     menu: chatMenu
+                }
+            }
+
+            S.SectionHeader {
+                text: qsTr("Customization")
+            }
+
+            S.Label {
+                x: S.Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                wrapMode: Text.Wrap
+                color: S.Theme.secondaryHighlightColor
+                font.pixelSize: S.Theme.fontSizeSmall
+                text: qsTr("Colors and other properties can be " +
+                           "freely customized for each line.")
+            }
+
+            Column {
+                width: parent.width
+
+                Repeater {
+                    model: chatModel
+                    delegate: D.ThreeLineDelegate {
+                        title: nick
+                        text: post
+                        context: when
+                        hint: status
+                        menu: chatMenu
+                        showOddEven: true
+
+                        hintLabel.color: {
+                            if (statusType == "online") "green"
+                            else if (statusType == "busy") "orange"
+                            else if (statusType == "away") "red"
+                            else S.Theme.secondaryColor
+                        }
+
+                        titleLabel.color: Qt.tint(hintLabel.color, S.Theme.rgba(S.Theme.highlightColor, 0.8))
+                        textLabel.color: S.Theme.primaryColor
+                        contextLabel {
+                            color: S.Theme.secondaryColor
+                            horizontalAlignment: Text.AlignRight
+                            font.pixelSize: S.Theme.fontSizeExtraSmall
+                        }
+                    }
                 }
             }
         }

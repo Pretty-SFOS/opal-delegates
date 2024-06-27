@@ -15,12 +15,12 @@ import Sailfish.Silica 1.0
 
 ListItem { id: root
 
-    /*! \qmlproperty var colors
+//    /*! \qmlproperty var colors
 
-       \brief An array of \c color values, overriding the defaults for the text colors.
+//       \brief An array of \c color values, overriding the defaults for the text colors.
 
-     */
-    property var colors: []
+//     */
+//    property var colors: []
 
 
     /*! \qmlproperty bool showOddEven
@@ -47,14 +47,19 @@ ListItem { id: root
     property color evenColor: Theme.highlightBackgroundColor
 
     property bool isOdd: (index %2 != 0)
-    Rectangle { id: oddevenrect
+    Rectangle {
+        id: oddevenrect
         anchors.fill: parent
+
         visible: showOddEven
         radius: Theme.paddingSmall
         opacity: Theme.opacityFaint
         color: isOdd ? oddColor : evenColor
-        border.color: "transparent"
-        border.width: radius/2
+
+        border {
+            color: "transparent"
+            width: radius/2
+        }
     }
     /*! \qmlproperty Component leftItem
 

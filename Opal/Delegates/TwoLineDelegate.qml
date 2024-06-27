@@ -15,7 +15,6 @@ import QtQuick 2.0
 
     \sa ThreeLineDelegate
 */
-
 ThreeLineDelegate {
-    amThreeLine: false
+    _amThreeLine: false
 }
