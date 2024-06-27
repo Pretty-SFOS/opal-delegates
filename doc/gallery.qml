@@ -2,82 +2,84 @@
  * This file is part of harbour-opal.
  * SPDX-License-Identifier: GPL-3.0-or-later
  * SPDX-FileCopyrightText: 2023 Peter G. (nephros)
+ * SPDX-FileCopyrightText: 2024 Mirian Margiani
  */
 import QtQuick 2.0
 import Sailfish.Silica 1.0 as S
 import Opal.Delegates 1.0 as D
 
 S.Page {
-    id: page
+    id: root
     allowedOrientations: S.Orientation.All
 
     ListModel {
-        id: mymodel
+        id: fruitModel
 
         ListElement {
-            name: "Apple"
-            price: "2.95"
-            desc: "a juicy fruit!"
-            note: "A is for Apple"
+            name: qsTr("Apple")
+            price: qsTr("2.95/kg")
+            desc: qsTr("a juicy fruit!")
+            note: qsTr("A is for Apple")
         }
         ListElement {
-            name: "Banana"
-            price: "1.05"
-            desc: "a yellow fruit!"
-            note: "Oh| Banana!"
+            name: qsTr("Banana")
+            price: qsTr("1.05/pc")
+            desc: qsTr("a yellow fruit!")
+            note: qsTr("Oh| Banana!")
         }
         ListElement {
-            name: "A basket full of exotic fruits"
-            price: "15.99"
-            desc: "fruits!"
-            note: "Suitable as a generous gift\nBuy now!"
+            name: qsTr("A basket full of exotic fruits")
+            price: qsTr("15.99/pc")
+            desc: qsTr("fruits!")
+            note: qsTr("Suitable as a generous gift\nBuy now!")
         }
         ListElement {
-            name: "Nut"
-            price: "0.99"
-            desc: ""
-            note: "not a fruit."
+            name: qsTr("Nut")
+            price: qsTr("0.99/bag")
+            desc: qsTr("")
+            note: qsTr("not a fruit.")
         }
     }
 
     ListModel {
-        id: chatmodel
+        id: chatModel
 
         ListElement {
-            nick: "SamGee"
-            status: "online"
-            when: "yesterday"
-            post: "@mrunderhill: are there any taters left?"
+            nick: qsTr("SamGee")
+            status: qsTr("online")
+            when: qsTr("yesterday")
+            post: qsTr("@mrunderhill: are there any taters left?")
         }
         ListElement {
-            nick: "Sauron"
-            status: "busy"
-            when: "3rd age"
-            post: "You cannot hide. I see you. There is no life in the void. Only death."
+            nick: qsTr("Sauron")
+            status: qsTr("busy")
+            when: qsTr("3rd age")
+            post: qsTr("You cannot hide. I see you. There is no life in the void. Only death.")
         }
         ListElement {
-            nick: "Aragorn"
-            status: "away"
-            when: "mid-day"
-            post: "Not idly do the leaves of Lorien fall..."
+            nick: qsTr("Aragorn")
+            status: qsTr("away")
+            when: qsTr("mid-day")
+            post: qsTr("Not idly do the leaves of Lorien fall...")
         }
     }
 
     Component {
-        id: cmenu
+        id: fruitMenu
 
         S.ContextMenu {
             S.MenuItem {
                 text: qsTr("Add to Shopping Basket")
-                onClicked: S.Remorse.itemAction(parent.parent.parent,
-                                                qsTr("Added"),
-                                                function () {}, 2000)
+                onClicked: S.Remorse.itemAction(
+                    parent.parent.parent, qsTr("Added"),
+                    function () {}, 2000)
             }
         }
     }
 
     Component {
-        id: rmenu
+        id: chatMenu
+
         S.ContextMenu {
             S.MenuItem {
                 text: qsTr("Reply")
@@ -86,18 +88,21 @@ S.Page {
     }
 
     S.SilicaFlickable {
-        id: flickable
+        id: flick
         anchors.fill: parent
         contentHeight: column.height
 
+        S.VerticalScrollDecorator {
+            flickable: flick
+        }
+
         Column {
             id: column
-            width: parent.width - S.Theme.horizontalPageMargin
-            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width
             spacing: S.Theme.paddingLarge
 
             S.PageHeader {
-                title: "Opal Delegates"
+                title: "Opal.Delegates"
             }
 
             S.SectionHeader {
@@ -105,16 +110,22 @@ S.Page {
             }
 
             S.Label {
-                width: parent.width
+                x: S.Theme.horizontalPageMargin
+                width: parent.width - 2*x
                 wrapMode: Text.Wrap
-                color: S.Theme.highlightColor
-                text: qsTr("A list of things, information in two lines, odd/even elements marked.")
+                color: S.Theme.secondaryHighlightColor
+                font.pixelSize: S.Theme.fontSizeSmall
+                text: qsTr("The “TwoLineDelegate” component can be used to create " +
+                           "a list of things with information in two lines.") + " " +
+                      qsTr("Optionally, lines can be alternatingly highlighted.")
             }
 
             S.ColumnView {
                 itemHeight: S.Theme.itemSizeLarge
-                model: mymodel
+                model: fruitModel
                 delegate: D.TwoLineDelegate {
+                    width: parent.width
+
                     title: name
                     text: note
                     extratext: price
@@ -122,7 +133,7 @@ S.Page {
                         source: "image://theme/icon-m-favorite"
                     }
                     showOddEven: true
-                    menu: cmenu
+                    menu: fruitMenu
                 }
             }
 
@@ -139,7 +150,7 @@ S.Page {
 
             S.ColumnView {
                 itemHeight: S.Theme.itemSizeLarge
-                model: mymodel
+                model: fruitModel
                 delegate: D.ThreeLineDelegate {
                     title: name
                     text: note
@@ -148,7 +159,7 @@ S.Page {
                     leftItem: S.Icon {
                         source: "image://theme/icon-m-favorite"
                     }
-                    menu: cmenu
+                    menu: fruitMenu
                 }
             }
 
@@ -161,7 +172,7 @@ S.Page {
 
             S.ColumnView {
                 itemHeight: S.Theme.itemSizeLarge
-                model: chatmodel
+                model: chatModel
                 delegate: D.ThreeLineDelegate {
                     title: nick
                     text: post
@@ -173,7 +184,7 @@ S.Page {
                         source: (nick === "Sauron") ? "image://theme/icon-splus-show-password?"
                                                       + "darkorange" : "image://theme/icon-m-chat"
                     }
-                    menu: rmenu
+                    menu: chatMenu
                     colors: [S.Theme.primaryColor, "darkorange", S.Theme.highlightDimmerColor]
                 }
             }
@@ -191,7 +202,7 @@ S.Page {
 
             S.ColumnView {
                 itemHeight: S.Theme.itemSizeSmall
-                model: chatmodel
+                model: chatModel
                 delegate: D.CompactDelegate {
                     title: nick
                     text: post
@@ -202,7 +213,7 @@ S.Page {
                         source: (nick === "Sauron") ? "image://theme/icon-splus-show-password?"
                                                       + "darkorange" : "image://theme/icon-m-chat"
                     }
-                    menu: rmenu
+                    menu: chatMenu
                 }
             }
         }
