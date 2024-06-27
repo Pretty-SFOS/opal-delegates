@@ -90,7 +90,7 @@ S.Page {
     S.SilicaFlickable {
         id: flick
         anchors.fill: parent
-        contentHeight: column.height
+        contentHeight: column.height + S.Theme.horizontalPageMargin
 
         S.VerticalScrollDecorator {
             flickable: flick
@@ -117,23 +117,35 @@ S.Page {
                 font.pixelSize: S.Theme.fontSizeSmall
                 text: qsTr("The “TwoLineDelegate” component can be used to create " +
                            "a list of things with information in two lines.") + " " +
-                      qsTr("Optionally, lines can be alternatingly highlighted.")
+                      qsTr("Optionally, rows can be alternatingly highlighted.")
             }
 
-            S.ColumnView {
-                itemHeight: S.Theme.itemSizeLarge
-                model: fruitModel
-                delegate: D.TwoLineDelegate {
-                    width: parent.width
+            S.TextSwitch {
+                id: emphasizeRowsFirst
+                text: qsTr("Emphasize rows")
+                checked: false
+            }
 
-                    title: name
-                    text: note
-                    extratext: price
-                    leftItem: S.Icon {
-                        source: "image://theme/icon-m-favorite"
+            Column {
+                // Note: if your delegates are guaranteed to be the same
+                // sized when rendered, you can alternatively use Silica's
+                // ColumnView here. ColumnView has better performance for
+                // long lists, but it cuts your view off at the bottom if
+                // your delegates have different sizes.
+                width: parent.width
+
+                Repeater {
+                    model: fruitModel
+                    delegate: D.TwoLineDelegate {
+                        title: name
+                        text: note
+                        extratext: price
+                        leftItem: S.Icon {
+                            source: "image://theme/icon-m-favorite"
+                        }
+                        showOddEven: emphasizeRowsFirst.checked
+                        menu: fruitMenu
                     }
-                    showOddEven: true
-                    menu: fruitMenu
                 }
             }
 
@@ -142,50 +154,75 @@ S.Page {
             }
 
             S.Label {
-                width: parent.width
+                x: S.Theme.horizontalPageMargin
+                width: parent.width - 2*x
                 wrapMode: Text.Wrap
-                color: S.Theme.highlightColor
-                text: qsTr("A list of things, information in three lines, no marking of odd/even elements.")
+                color: S.Theme.secondaryHighlightColor
+                font.pixelSize: S.Theme.fontSizeSmall
+                text: qsTr("The “ThreeLineDelegate” component has an extra third " +
+                           "content line for least important information.") + " " +
+                      qsTr("Optionally, rows can be alternatingly highlighted.")
             }
 
-            S.ColumnView {
-                itemHeight: S.Theme.itemSizeLarge
-                model: fruitModel
-                delegate: D.ThreeLineDelegate {
-                    title: name
-                    text: note
-                    context: desc
-                    extratext: price
-                    leftItem: S.Icon {
-                        source: "image://theme/icon-m-favorite"
+            S.TextSwitch {
+                id: emphasizeRowsSecond
+                text: qsTr("Emphasize rows")
+                checked: false
+            }
+
+            Column {
+                width: parent.width
+
+                Repeater {
+                    model: fruitModel
+                    delegate: D.ThreeLineDelegate {
+                        title: name
+                        text: note
+                        context: desc
+                        extratext: price
+                        leftItem: S.Icon {
+                            source: "image://theme/icon-m-favorite"
+                        }
+                        showOddEven: emphasizeRowsSecond.checked
+                        menu: fruitMenu
                     }
-                    menu: fruitMenu
                 }
             }
 
-            S.Label {
-                width: parent.width
-                wrapMode: Text.Wrap
-                color: S.Theme.highlightColor
-                text: qsTr("A conversation view using customized colors.")
+            S.SectionHeader {
+                text: "Custom colors"
             }
 
-            S.ColumnView {
-                itemHeight: S.Theme.itemSizeLarge
-                model: chatModel
-                delegate: D.ThreeLineDelegate {
-                    title: nick
-                    text: post
-                    context: when
-                    extratext: status
-                    leftItem: S.Icon {
-                        width: S.Theme.iconSizeMedium
-                        height: S.Theme.iconSizeMedium
-                        source: (nick === "Sauron") ? "image://theme/icon-splus-show-password?"
-                                                      + "darkorange" : "image://theme/icon-m-chat"
+            S.Label {
+                x: S.Theme.horizontalPageMargin
+                width: parent.width - 2*x
+                wrapMode: Text.Wrap
+                color: S.Theme.secondaryHighlightColor
+                font.pixelSize: S.Theme.fontSizeSmall
+                text: qsTr("Colors for each line can be freely customized. However, " +
+                           "colors that do not follow Silica styling should be used " +
+                           "rarely and with care.")
+            }
+
+            Column {
+                width: parent.width
+
+                Repeater {
+                    model: chatModel
+                    delegate: D.ThreeLineDelegate {
+                        title: nick
+                        text: post
+                        context: when
+                        extratext: status
+                        leftItem: S.Icon {
+                            width: S.Theme.iconSizeMedium
+                            height: S.Theme.iconSizeMedium
+                            source: (nick === "Sauron") ? "image://theme/icon-splus-show-password?"
+                                                          + "darkorange" : "image://theme/icon-m-chat"
+                        }
+                        menu: chatMenu
+                        colors: [S.Theme.primaryColor, "darkorange", S.Theme.highlightDimmerColor]
                     }
-                    menu: chatMenu
-                    colors: [S.Theme.primaryColor, "darkorange", S.Theme.highlightDimmerColor]
                 }
             }
 
@@ -194,10 +231,14 @@ S.Page {
             }
 
             S.Label {
-                width: parent.width
+                x: S.Theme.horizontalPageMargin
+                width: parent.width - 2*x
                 wrapMode: Text.Wrap
-                color: S.Theme.highlightColor
-                text: qsTr("A compact conversation view.")
+                color: S.Theme.secondaryHighlightColor
+                font.pixelSize: S.Theme.fontSizeSmall
+                text: qsTr("The “CompactDelegate” has a primary and secondary " +
+                           "content line. Lines are not wrapped. It can also " +
+                           "optionally show an icon on the left.")
             }
 
             S.ColumnView {
