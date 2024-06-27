@@ -62,4 +62,64 @@ ListItem { id: root
 
     */
     property Component leftItem: null
+
+    default property alias contents: contentItem.data
+
+    property int padding: 0
+    property int lrPadding: Theme.horizontalPageMargin
+    property int tbPadding: Theme.paddingSmall
+    property int topPadding: 0
+    property int bottomPadding: 0
+    property int leftPadding: 0
+    property int rightPadding: 0
+
+    readonly property int _topPadding: topPadding > 0 ? topPadding : tbPadding
+    readonly property int _bottomPadding: bottomPadding > 0 ? bottomPadding : tbPadding
+    readonly property int _leftPadding: leftPadding > 0 ? leftPadding : lrPadding
+    readonly property int _rightPadding: rightPadding > 0 ? rightPadding : lrPadding
+    readonly property int _tbPadding: tbPadding > 0 ? tbPadding : padding
+    readonly property int _lrPadding: lrPadding > 0 ? lrPadding : padding
+
+    contentHeight: Math.max(
+        contentItem.childrenRect.height + _topPadding + _bottomPadding,
+        Theme.itemSizeMedium
+    )
+
+    Item {
+        id: topPaddingItem
+        anchors.top: parent.top
+        width: parent.width
+        height: _topPadding
+    }
+
+    Item {
+        id: bottomPaddingItem
+        anchors.bottom: parent.bottom
+        width: parent.width
+        height: _bottomPadding
+    }
+
+    Item {
+        id: leftPaddingItem
+        anchors.left: parent.left
+        width: _leftPadding
+        height: parent.height
+    }
+
+    Item {
+        id: rightPaddingItem
+        anchors.right: parent.right
+        width: _rightPadding
+        height: parent.height
+    }
+
+    Item {
+        id: contentItem
+        anchors {
+            left: leftPaddingItem.right
+            right: rightPaddingItem.left
+            top: topPaddingItem.bottom
+            bottom: bottomPaddingItem.top
+        }
+    }
 }
