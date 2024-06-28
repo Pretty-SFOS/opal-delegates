@@ -6,11 +6,8 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0 as S
-import Opal.Delegates 1.0 as D
 
 ListModel {
-    id: chatModel
-
     ListElement {
         nick: qsTr("Jane")
         status: qsTr("online")
