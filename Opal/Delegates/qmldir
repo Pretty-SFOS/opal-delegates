@@ -6,5 +6,8 @@ PaddedDelegate 1.0 PaddedDelegate.qml
 OneLineDelegate 1.0 OneLineDelegate.qml
 TwoLineDelegate 1.0 TwoLineDelegate.qml
 ThreeLineDelegate 1.0 ThreeLineDelegate.qml
+
 DelegateIconItem 1.0 DelegateIconItem.qml
+DelegateInfoItem 1.0 DelegateInfoItem.qml
+
 CompactDelegate 1.0 CompactDelegate.qml
