@@ -141,6 +141,14 @@ S.Page {
                             primaryColor: highlightColor
                             highlightColor: S.Theme.secondaryHighlightColor
                         }
+                        titleLabel.anchors {
+                            right: titleLabel.parent.right
+                            horizontalCenter: undefined
+                        }
+                        descriptionLabel.anchors {
+                            right: descriptionLabel.parent.right
+                            horizontalCenter: undefined
+                        }
 
                         property color highlightColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
                         property color baseColor: {
