@@ -77,112 +77,52 @@ PaddedDelegate {
        "online" for a user)
     */
 
+    minContentHeight: Theme.itemSizeLarge
+
     property string title
     property string text
-    property string context
-    property string hint
+    property string description
 
-    readonly property alias titleLabel: _line1
-    readonly property alias textLabel: _line2
-    readonly property alias contextLabel: _line3
-    readonly property alias hintLabel: _hint
-
-    property bool _amThreeLine: true
-
-//    Component.onCompleted: {
-//        var num = amThreeLine ? 3 : 2
-//        if ( !!colors && colors.length === num) {
-//            line1.color = colors[0];
-//            line2.color = colors[1];
-//            if (amThreeLine)
-//                line3.color = colors[2];
-//        }
-//    }
-
-//    // TODO: do these make sense at all?
-//    QtObject{ id: line1; property string text: ""; property color color: Theme.highlightColor; property int size: Theme.fontSizeMedium }
-//    QtObject{ id: line2; property string text: ""; property color color: Theme.secondaryColor; property int size: Theme.fontSizeSmall }
-//    QtObject{ id: line3; property string text: ""; property color color: Theme.secondaryColor; property int size: Theme.fontSizeTiny }
-//    QtObject{ id: extra; property string text: ""; property color color: Theme.primaryColor; property int size: Theme.fontSizeTiny }
-
-//    contentHeight: Math.max(
-//        content.height,
-//        amThreeLine ? Theme.itemSizeMedium : Theme.itemSizeSmall
-//    )
-
-    Loader {
-        id: leftItemLoader
-        anchors {
-            left: parent.left
-            verticalCenter: parent.verticalCenter
-        }
-        active: leftItem !== null
-        sourceComponent: leftItem
-        width: height
-    }
+    readonly property alias titleLabel: _line0
+    readonly property alias textLabel: _line1
+    readonly property alias descriptionLabel: _line2
 
     Column {
-        id: content
-        anchors {
-            left: leftItemLoader.right
-            right: parent.right
+        id: contentColumn
+        width: parent.width
+        spacing: Theme.paddingSmall
 
-            // TODO use states, code below is explicitly discouraged in docs
-            verticalCenter: (leftItemLoader.height > 0)
-                ? leftItemLoader.verticalCenter
-                : parent.verticalCenter
+        Label {
+            id: _line0
+            width: parent.width
+            text: root.title
+            font.pixelSize: Theme.fontSizeSmall
+            wrapMode: Text.Wrap
+
+            palette.primaryColor: Theme.secondaryHighlightColor
+            palette.highlightColor: Theme.highlightColor
         }
 
-        Row {
+        Label {
+            id: _line1
             width: parent.width
-            spacing: Theme.paddingMedium
+            text: root.text
+            font.pixelSize: Theme.fontSizeMedium
+            wrapMode: Text.Wrap
 
-            Label {
-                id: _line1
-                width:  parent.width - _hint.width - parent.spacing
-                text: root.title
-                color: Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: Text.NoWrap
-                truncationMode: TruncationMode.Fade
-
-            }
-
-            Label {
-                id: _hint
-                anchors {
-                    bottom: _line1.bottom
-                    rightMargin: parent.spacing
-                    verticalCenter: _line1.verticalCenter
-                }
-                text: root.hint
-                color: Theme.primaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: Text.NoWrap
-                truncationMode: TruncationMode.Fade
-
-            }
+            palette.primaryColor: Theme.primaryColor
+            palette.highlightColor: Theme.highlightColor
         }
 
         Label {
             id: _line2
             width: parent.width
-            text: root.text
-            color: Theme.primaryColor
-            font.pixelSize: Theme.fontSizeMedium
+            text: root.description
+            font.pixelSize: Theme.fontSizeSmall
             wrapMode: Text.Wrap
 
-        }
-
-        Label {
-            id: _line3
-            visible: _amThreeLine
-            width: parent.width
-            text: root.context
-            color: Theme.secondaryColor
-            font.pixelSize: Theme.fontSizeSmall
-            wrapMode: Text.NoWrap
-            truncationMode: TruncationMode.Fade
+            palette.primaryColor: Theme.secondaryColor
+            palette.highlightColor: Theme.secondaryHighlightColor
         }
     }
 }
