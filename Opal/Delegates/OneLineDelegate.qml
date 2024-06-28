@@ -1,21 +1,11 @@
-/*
-SPDX-FileCopyrightText: 2024 Mirian Margiani
-SPDX-License-Identifier: Apache-2.0
-*/
+//@ This file is part of opal-delegates.
+//@ https://github.com/Pretty-SFOS/opal-delegates
+//@ SPDX-FileCopyrightText: 2024 Mirian Margiani
+//@ SPDX-License-Identifier: GPL-3.0-or-later
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-/*! \qmltype OneLineDelegate
-    \inqmlmodule Opal.Delegates
-    \inherits PaddedDelegate
-
-    \brief A \c ListItem intended to be used in views.
-
-    It allows quick display two lines of text data, and an icon or other indicator.
-
-    \sa ThreeLineDelegate
-*/
 PaddedDelegate {
     id: root
     minContentHeight: Theme.itemSizeSmall
