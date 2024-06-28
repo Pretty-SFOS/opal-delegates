@@ -38,7 +38,8 @@ import Sailfish.Silica 1.0
 
 */
 
-ListDelegateBase { id: root
+PaddedDelegate {
+    id: root
 
     /*! \qmlproperty string title
 

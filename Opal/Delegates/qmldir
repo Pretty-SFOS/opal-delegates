@@ -2,6 +2,7 @@ module Opal.Delegates
 # This file is part of Opal.Delegates.
 # SPDX-FileCopyrightText: 2023 Peter G. (nephros)
 # SPDX-License-Identifier: GPL-3.0-or-later
+PaddedDelegate 1.0 PaddedDelegate.qml
 ThreeLineDelegate 1.0 ThreeLineDelegate.qml
 TwoLineDelegate 1.0 TwoLineDelegate.qml
 CompactDelegate 1.0 CompactDelegate.qml
