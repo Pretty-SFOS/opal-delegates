@@ -12,24 +12,24 @@ ListModel {
     id: chatModel
 
     ListElement {
-        nick: qsTr("SamGee")
+        nick: qsTr("Jane")
         status: qsTr("online")
         when: qsTr("yesterday")
-        post: qsTr("@mrunderhill: are there any taters left?")
+        post: qsTr("@John: are there any taters left?")
         statusType: "online"
     }
     ListElement {
-        nick: qsTr("Sauron")
+        nick: qsTr("John")
         status: qsTr("busy")
-        when: qsTr("3rd age")
-        post: qsTr("You cannot hide. I see you. There is no life in the void. Only death.")
+        when: qsTr("2h ago")
+        post: qsTr("Sorry @Jane, I ate them all. I'll make new ones on Saturday, though.")
         statusType: "busy"
     }
     ListElement {
-        nick: qsTr("Aragorn")
+        nick: qsTr("Lisa")
         status: qsTr("away")
-        when: qsTr("mid-day")
-        post: qsTr("Not idly do the leaves of Lorien fall...")
+        when: qsTr("32m ago")
+        post: qsTr("@Jane, come over, I have some ready right now!")
         statusType: "away"
     }
 }
