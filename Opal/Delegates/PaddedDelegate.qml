@@ -6,6 +6,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "private"
 
 /*! \qmltype PaddedDelegate
     \inqmlmodule Opal.Delegates
@@ -66,26 +67,18 @@ ListItem {
     property int minContentHeight: Theme.itemSizeMedium
     property int spacing: Theme.paddingSmall
 
-    property int padding: 0
-    property int lrPadding: Theme.horizontalPageMargin
-    property int tbPadding: Theme.paddingSmall
-    property int topPadding: 0
-    property int bottomPadding: 0
-    property int leftPadding: 0
-    property int rightPadding: 0
+    readonly property PaddingData padding: PaddingData {
+        readonly property int __defaultLeftRight: Theme.horizontalPageMargin
+        readonly property int __defaultTopBottom: Theme.paddingSmall
 
-    readonly property int _topPadding: topPadding > 0 ? topPadding : tbPadding
-    readonly property int _bottomPadding: bottomPadding > 0 ? bottomPadding : tbPadding
-    readonly property int _leftPadding: leftPadding > 0 ? leftPadding : lrPadding
-    readonly property int _rightPadding: rightPadding > 0 ? rightPadding : lrPadding
-    readonly property int _tbPadding: tbPadding > 0 ? tbPadding : padding
-    readonly property int _lrPadding: lrPadding > 0 ? lrPadding : padding
+        leftRight: all == 0 && left == 0 && right == 0 ? __defaultLeftRight : 0
+        topBottom: all == 0 && top == 0 && bottom == 0 ? __defaultTopBottom : 0
+    }
 
-    contentHeight:
 
     contentHeight: Math.max(
-          _topPadding
-        + _bottomPadding
+          padding.effectiveTop
+        + padding.effectiveBottom
         + Math.max(leftItemLoader.height,
                    rightItemLoader.height,
                    contentItem.childrenRect.height)
@@ -96,27 +89,27 @@ ListItem {
         id: topPaddingItem
         anchors.top: parent.top
         width: parent.width
-        height: _topPadding
+        height: padding.effectiveTop
     }
 
     Item {
         id: bottomPaddingItem
         anchors.bottom: parent.bottom
         width: parent.width
-        height: _bottomPadding
+        height: padding.effectiveBottom
     }
 
     Item {
         id: leftPaddingItem
         anchors.left: parent.left
-        width: _leftPadding
+        width: padding.effectiveLeft
         height: parent.height
     }
 
     Item {
         id: rightPaddingItem
         anchors.right: parent.right
-        width: _rightPadding
+        width: padding.effectiveRight
         height: parent.height
     }
 
@@ -136,7 +129,7 @@ ListItem {
         asynchronous: loadSideItemsAsync
         anchors {
             right: rightPaddingItem.left
-            verticalCenter: topItemLoader.verticalCenter
+            verticalCenter: parent.verticalCenter
         }
     }
 
