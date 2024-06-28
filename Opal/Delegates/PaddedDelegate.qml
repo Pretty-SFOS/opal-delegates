@@ -140,7 +140,7 @@ ListItem {
         }
     }
 
-    Item {
+    SilicaItem {
         id: contentItem
         anchors {
             left: leftItemLoader.right
