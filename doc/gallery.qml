@@ -137,8 +137,10 @@ S.Page {
                         title: nick
                         description: when
 
-                        titleLabel.palette.primaryColor: highlightColor
-                        titleLabel.palette.highlightColor: S.Theme.secondaryHighlightColor
+                        titleLabel.palette {
+                            primaryColor: highlightColor
+                            highlightColor: S.Theme.secondaryHighlightColor
+                        }
 
                         property color highlightColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
                         property color baseColor: {
@@ -242,8 +244,10 @@ S.Page {
                             anchors.verticalCenter: parent.verticalCenter
                             font.pixelSize: S.Theme.fontSizeSmall
 
-                            palette.primaryColor: statusMark.highlightColor
-                            palette.highlightColor: S.Theme.secondaryHighlightColor
+                            palette {
+                                primaryColor: statusMark.highlightColor
+                                highlightColor: S.Theme.secondaryHighlightColor
+                            }
                         }
 
                         Rectangle {

@@ -40,8 +40,10 @@ Item {
             font.pixelSize: Theme.fontSizeExtraSmall
             text: root.title
 
-            palette.highlightColor: Theme.secondaryHighlightColor
-            palette.primaryColor: Theme.secondaryColor
+            palette {
+                primaryColor: Theme.secondaryColor
+                highlightColor: Theme.secondaryHighlightColor
+            }
         }
 
         OptionalLabel {
@@ -50,8 +52,10 @@ Item {
             font.pixelSize: Theme.fontSizeLarge
             text: root.text
 
-            palette.primaryColor: Theme.primaryColor
-            palette.highlightColor: Theme.highlightColor
+            palette {
+                primaryColor: Theme.primaryColor
+                highlightColor: Theme.highlightColor
+            }
         }
 
         OptionalLabel {
@@ -60,8 +64,10 @@ Item {
             font.pixelSize: Theme.fontSizeExtraSmall
             text: root.description
 
-            palette.primaryColor: Theme.secondaryColor
-            palette.highlightColor: Theme.secondaryHighlightColor
+            palette {
+                primaryColor: Theme.secondaryColor
+                highlightColor: Theme.secondaryHighlightColor
+            }
         }
     }
 

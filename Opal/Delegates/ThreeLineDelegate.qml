@@ -98,8 +98,10 @@ PaddedDelegate {
             text: root.title
             font.pixelSize: Theme.fontSizeSmall
 
-            palette.primaryColor: Theme.secondaryHighlightColor
-            palette.highlightColor: Theme.highlightColor
+            palette {
+                primaryColor: Theme.secondaryHighlightColor
+                highlightColor: Theme.highlightColor
+            }
         }
 
         OptionalLabel {
@@ -108,8 +110,10 @@ PaddedDelegate {
             text: root.text
             font.pixelSize: Theme.fontSizeMedium
 
-            palette.primaryColor: Theme.primaryColor
-            palette.highlightColor: Theme.highlightColor
+            palette {
+                primaryColor: Theme.primaryColor
+                highlightColor: Theme.highlightColor
+            }
         }
 
         OptionalLabel {
@@ -118,8 +122,10 @@ PaddedDelegate {
             text: root.description
             font.pixelSize: Theme.fontSizeSmall
 
-            palette.primaryColor: Theme.secondaryColor
-            palette.highlightColor: Theme.secondaryHighlightColor
+            palette {
+                primaryColor: Theme.secondaryColor
+                highlightColor: Theme.secondaryHighlightColor
+            }
         }
     }
 }

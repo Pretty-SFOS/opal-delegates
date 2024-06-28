@@ -21,7 +21,9 @@ PaddedDelegate {
         font.pixelSize: Theme.fontSizeMedium
         wrapMode: Text.Wrap
 
-        palette.primaryColor: Theme.primaryColor
-        palette.highlightColor: Theme.highlightColor
+        palette {
+            primaryColor: Theme.primaryColor
+            highlightColor: Theme.highlightColor
+        }
     }
 }
