@@ -78,6 +78,7 @@ PaddedDelegate {
     */
 
     minContentHeight: Theme.itemSizeLarge
+    centeredContainer: contentColumn
 
     property string title
     property string text
@@ -90,7 +91,12 @@ PaddedDelegate {
     Column {
         id: contentColumn
         width: parent.width
-        anchors.verticalCenter: parent.verticalCenter
+
+        // Important: setting this here creates a binding loop
+        // on the delegate's height property. Instead, use the
+        // state mechanism provided by PaddedDelegate to automatically
+        // center or un-center the item based on its size.
+        // anchors.verticalCenter: parent.verticalCenter
 
         OptionalLabel {
             id: _line0

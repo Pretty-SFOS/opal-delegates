@@ -65,6 +65,7 @@ ListItem {
     property bool loadSideItemsAsync: false
 
     default property alias contents: contentItem.data
+    property var centeredContainer
 
     property int minContentHeight: Theme.itemSizeMedium
     property int spacing: Theme.paddingMedium
@@ -120,14 +121,14 @@ ListItem {
         id: leftPaddingItem
         anchors.left: parent.left
         width: padding.effectiveLeft
-        height: parent.height
+        height: parent.contentHeight
     }
 
     Item {
         id: rightPaddingItem
         anchors.right: parent.right
         width: padding.effectiveRight
-        height: parent.height
+        height: parent.contentHeight
     }
 
     Loader {
@@ -152,6 +153,7 @@ ListItem {
 
     SilicaItem {
         id: contentItem
+
         anchors {
             left: leftItemLoader.right
             leftMargin: leftItemLoader.width > 0 ? spacing : 0
@@ -176,4 +178,37 @@ ListItem {
             width: radius / 2
         }
     }
+
+    states: [
+        State {
+            name: "tall"
+            when: !!centeredContainer &&
+                  (   centeredContainer.height > minContentHeight
+                   || centeredContainer.implicitHeight > minContentHeight
+                   || centeredContainer.childrenRect.height > minContentHeight)
+
+            AnchorChanges {
+                target: centeredContainer
+                anchors {
+                    verticalCenter: undefined
+                    top: centeredContainer.parent.top
+                }
+            }
+        },
+        State {
+            name: "short"
+            when: !!centeredContainer &&
+                  (   centeredContainer.height <= minContentHeight
+                   || centeredContainer.implicitHeight <= minContentHeight
+                   || centeredContainer.childrenRect.height <= minContentHeight)
+
+            AnchorChanges {
+                target: centeredContainer
+                anchors {
+                    top: undefined
+                    verticalCenter: centeredContainer.parent.verticalCenter
+                }
+            }
+        }
+    ]
 }

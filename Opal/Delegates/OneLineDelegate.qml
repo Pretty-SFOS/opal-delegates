@@ -9,21 +9,30 @@ import Sailfish.Silica 1.0
 PaddedDelegate {
     id: root
     minContentHeight: Theme.itemSizeSmall
+    centeredContainer: contentContainer
 
     property string text
     readonly property alias textLabel: _line1
 
-    Label {
-        id: _line1
-        anchors.verticalCenter: parent.verticalCenter
+    Column {
+        // Note: all contents are placed inside a column to avoid
+        // a binding loop on the delegate's height property.
+        // Directly setting the label as the centeredContainer does
+        // not work.
+        id: contentContainer
         width: parent.width
-        text: root.text
-        font.pixelSize: Theme.fontSizeMedium
-        wrapMode: Text.Wrap
 
-        palette {
-            primaryColor: Theme.primaryColor
-            highlightColor: Theme.highlightColor
+        Label {
+            id: _line1
+            width: parent.width
+            text: root.text
+            font.pixelSize: Theme.fontSizeMedium
+            wrapMode: Text.Wrap
+
+            palette {
+                primaryColor: Theme.primaryColor
+                highlightColor: Theme.highlightColor
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ import Sailfish.Silica 1.0
 PaddedDelegate {
     id: root
     minContentHeight: Theme.itemSizeMedium
+    centeredContainer: contentColumn
 
     property string text
     property string description
@@ -30,7 +31,6 @@ PaddedDelegate {
     Column {
         id: contentColumn
         width: parent.width
-        anchors.verticalCenter: parent.verticalCenter
 
         OptionalLabel {
             id: _line1
