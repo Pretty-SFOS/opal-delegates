@@ -3,14 +3,16 @@
 //@ SPDX-FileCopyrightText: 2024 Mirian Margiani
 //@ SPDX-License-Identifier: GPL-3.0-or-later
 
-import QtQuick 2.0
+import QtQuick 2.5
 import Sailfish.Silica 1.0
 
-Column {
+Item {
     id: root
-    width: Math.max(Theme.itemSizeMedium, childrenRect.width)
-    height: Math.max(Theme.itemSizeMedium, childrenRect.height
-    spacing: Theme.paddingSmall
+    width: Math.max(column.width, minWidth)
+    height: Math.max(parent.height, column.height)
+
+    property int minWidth: Theme.itemSizeMedium
+    property int fixedWidth: 0
 
     property string title
     property string text
@@ -20,33 +22,105 @@ Column {
     readonly property alias textLabel: _line1
     readonly property alias descriptionLabel: _line2
 
-    Label {
-        id: _line0
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: Theme.fontSizeExtraSmall
-        text: root.title
+    Column {
+        id: column
+        width: Math.max(_line0.width, _line1.width, _line2.width)
+        height: Math.max(root.parent.height
+                         , _line0.height
+                         + _line1.height
+                         + _line2.height)
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
 
-        palette.primaryColor: Theme.secondaryColor
-        palette.highlightColor: Theme.secondaryHighlightColor
+        OptionalLabel {
+            id: _line0
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: Theme.fontSizeExtraSmall
+            text: root.title
+
+            palette.highlightColor: Theme.secondaryHighlightColor
+            palette.primaryColor: Theme.secondaryColor
+        }
+
+        OptionalLabel {
+            id: _line1
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: Theme.fontSizeLarge
+            text: root.text
+
+            palette.primaryColor: Theme.primaryColor
+            palette.highlightColor: Theme.highlightColor
+        }
+
+        OptionalLabel {
+            id: _line2
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: Theme.fontSizeExtraSmall
+            text: root.description
+
+            palette.primaryColor: Theme.secondaryColor
+            palette.highlightColor: Theme.secondaryHighlightColor
+        }
     }
 
-    Label {
-        id: _line1
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: Theme.fontSizeLarge
-        text: root.text
+    states: [
+        State {
+            name: "fixedWidth"
+            when: fixedWidth > 0
 
-        palette.primaryColor: Theme.primaryColor
-        palette.highlightColor: Theme.highlightColor
-    }
+            PropertyChanges {
+                target: root
+                width: fixedWidth
+            }
 
-    Label {
-        id: _line2
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: Theme.fontSizeExtraSmall
-        text: root.description
+            PropertyChanges {
+                target: column
+                width: fixedWidth
+            }
 
-        palette.primaryColor: Theme.secondaryColor
-        palette.highlightColor: Theme.secondaryHighlightColor
-    }
+            PropertyChanges {
+                target: _line0
+                width: fixedWidth
+                wrapped: false
+                horizontalAlignment: _line0.metrics.width > fixedWidth ?
+                                         Text.AlignLeft : Text.AlignHCenter
+            }
+
+            AnchorChanges {
+                target: _line0
+                anchors.horizontalCenter: undefined
+                anchors.left: parent.left
+            }
+
+            PropertyChanges {
+                target: _line1
+                width: fixedWidth
+                wrapped: false
+                horizontalAlignment: _line1.metrics.width > fixedWidth ?
+                                         Text.AlignLeft : Text.AlignHCenter
+            }
+
+            AnchorChanges {
+                target: _line1
+                anchors.horizontalCenter: undefined
+                anchors.left: parent.left
+            }
+
+            PropertyChanges {
+                target: _line2
+                width: fixedWidth
+                wrapped: false
+                horizontalAlignment: _line2.metrics.width > fixedWidth ?
+                                         Text.AlignLeft : Text.AlignHCenter
+            }
+
+            AnchorChanges {
+                target: _line2
+                anchors.horizontalCenter: undefined
+                anchors.left: parent.left
+            }
+        }
+    ]
 }
