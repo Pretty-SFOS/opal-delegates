@@ -1,18 +1,31 @@
 /*
 SPDX-FileCopyrightText: 2023 Peter G. (nephros)
+SPDX-FileCopyrightText: 2024 Mirian Margiani
 SPDX-License-Identifier: GPL-3.0-or-later
 */
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-/*! \qmltype ListDelegateBase
+/*! \qmltype PaddedDelegate
     \inqmlmodule Opal.Delegates
     \inherits Sailfish.Silica.ListItem
 
     \brief Base type providing a \c ListItem intended to be used in views.
-*/
 
+    Basic anatomy:
+
+    \pre
+    +----------------------------------------------------------+
+    |                        top padding                       |
+    |         +--------------------------------------+         |
+    | left    | left  |        content       | right | right   |
+    | padding | item  |         item         | item  | padding |
+    |         +--------------------------------------+         |
+    |                      bottom padding                      |
+    +----------------------------------------------------------+
+    \endpre
+*/
 ListItem {
     id: root
 
@@ -39,24 +52,18 @@ ListItem {
 
     property bool _isOddRow: (index %2 != 0)
 
+    // ------------------------------------------------------------------------
+
     /*! An Item such as an Icon displayed on the left side of the Delegate
     */
     property Component leftItem: null
+    readonly property alias centerItem: contentItem
     property Component rightItem: null
-    property Component topItem: null
-    property Component bottomItem: null
-    readonly property alias bodyItem: contentItem
-
-    property Component topLeftItem: null
-    property Component topRightItem: null
-    property Component bottomLeftItem: null
-    property Component bottomRightItem: null
-
-
-    // ------------------------------------------------------------------------
+    property bool loadSideItemsAsync: false
 
     default property alias contents: contentItem.data
 
+    property int minContentHeight: Theme.itemSizeMedium
     property int spacing: Theme.paddingSmall
 
     property int padding: 0
@@ -74,10 +81,15 @@ ListItem {
     readonly property int _tbPadding: tbPadding > 0 ? tbPadding : padding
     readonly property int _lrPadding: lrPadding > 0 ? lrPadding : padding
 
+    contentHeight:
+
     contentHeight: Math.max(
-        contentItem.childrenRect.height + _topPadding + _bottomPadding +
-            Math.max(topItemLoader.height, topLeftItemLoader.height, topRightItemLoader.height),
-        Theme.itemSizeMedium
+          _topPadding
+        + _bottomPadding
+        + Math.max(leftItemLoader.height,
+                   rightItemLoader.height,
+                   contentItem.childrenRect.height)
+        , minContentHeight
     )
 
     Item {
@@ -110,52 +122,20 @@ ListItem {
 
     Loader {
         id: leftItemLoader
+        sourceComponent: leftItem
+        asynchronous: loadSideItemsAsync
         anchors {
             left: leftPaddingItem.right
             verticalCenter: parent.verticalCenter
-        }
-        sourceComponent: leftItem
-        width: height
-    }
-
-    Loader {
-        id: topItemLoader
-        sourceComponent: topItem
-        anchors {
-            left: topLeftItemLoader.right
-            leftMargin: spacing
-            top: topPaddingItem.bottom
-            right: topRightItemLoader.left
-            rightMargin: spacing
-        }
-    }
-
-    Loader {
-        id: topLeftItemLoader
-        sourceComponent: topLeftItem
-        anchors {
-            left: leftItemLoader.right
-            leftMargin: spacing
-            verticalCenter: topItemLoader.verticalCenter
-        }
-    }
-
-    Loader {
-        id: topRightItemLoader
-        sourceComponent: topRightItem
-        anchors {
-            right: rightItemLoader.left
-            rightMargin: spacing
-            verticalCenter: topItemLoader.verticalCenter
         }
     }
 
     Loader {
         id: rightItemLoader
         sourceComponent: rightItem
+        asynchronous: loadSideItemsAsync
         anchors {
             right: rightPaddingItem.left
-            rightMargin: spacing
             verticalCenter: topItemLoader.verticalCenter
         }
     }
@@ -165,12 +145,10 @@ ListItem {
         anchors {
             left: leftItemLoader.right
             leftMargin: spacing
-            right: rightPaddingItem.left
+            right: rightItemLoader.left
             rightMargin: spacing
             top: topPaddingItem.bottom
-            topMargin: spacing
             bottom: bottomPaddingItem.top
-            bottomMargin: spacing
         }
     }
 
