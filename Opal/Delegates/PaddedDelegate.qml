@@ -137,9 +137,9 @@ ListItem {
         id: contentItem
         anchors {
             left: leftItemLoader.right
-            leftMargin: spacing
+            leftMargin: leftItemLoader.width > 0 ? spacing : 0
             right: rightItemLoader.left
-            rightMargin: spacing
+            rightMargin: rightItemLoader.width > 0 ? spacing : 0
             top: topPaddingItem.bottom
             bottom: bottomPaddingItem.top
         }
