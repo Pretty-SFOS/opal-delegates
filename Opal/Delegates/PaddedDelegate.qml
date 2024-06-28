@@ -65,7 +65,7 @@ ListItem {
     default property alias contents: contentItem.data
 
     property int minContentHeight: Theme.itemSizeMedium
-    property int spacing: Theme.paddingSmall
+    property int spacing: Theme.paddingMedium
 
     readonly property PaddingData padding: PaddingData {
         readonly property int __defaultLeftRight: Theme.horizontalPageMargin
