@@ -27,14 +27,14 @@ description: This module provides <i>Delegates</i> for use in QML views.
 
 # attribution string for the whole module, in the same form as a SPDX
 # FileCopyrightText entry.
-attribution: 2023 Peter G (nephros)
+attribution: 2023 Peter G. (nephros)
 
 # colon-separated list of this module's current maintainer(s)
-maintainers: ichthyosaurus;nephros
+maintainers: ichthyosaurus:nephros
 
 # colon-separated list of this module's author(s) and contributors
 # this list should be exhaustive
-authors: ichthyosaurus;nephros
+authors: ichthyosaurus:nephros
 
 # the module's SPDX license id, cf. https://spdx.org/licenses/
 mainLicenseSpdx: GPL-3.0-or-later

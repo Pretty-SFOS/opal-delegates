@@ -1,9 +1,9 @@
-/*
- * This file is part of harbour-opal.
- * SPDX-License-Identifier: Apache-2.0
- * SPDX-FileCopyrightText: 2023 Peter G. (nephros)
- * SPDX-FileCopyrightText: 2024 Mirian Margiani
- */
+//@ This file is part of opal-delegates.
+//@ https://github.com/Pretty-SFOS/opal-delegates
+//@ SPDX-FileCopyrightText: 2023 Peter G. (nephros)
+//@ SPDX-FileCopyrightText: 2024 Mirian Margiani
+//@ SPDX-License-Identifier: GPL-3.0-or-later
+
 import QtQuick 2.0
 import Sailfish.Silica 1.0 as S
 import Opal.Delegates 1.0 as D
