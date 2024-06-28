@@ -8,13 +8,24 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "private"
 
-/*! \qmltype PaddedDelegate
+/*!
+    \qmltype PaddedDelegate
     \inqmlmodule Opal.Delegates
     \inherits Sailfish.Silica.ListItem
 
     \brief Base type providing a \c ListItem intended to be used in views.
 
-    Basic anatomy:
+    This base type can be used for building custom list items that
+    follow Silica styling with a simple API.
+
+    The ready-made delegates \l OneLineDelegate, \l TwoLineDelegate, and
+    \l ThreeLineDelegate are sufficient for most use-cases. Complex
+    customizations are possible with these types, without having to
+    develop a custom delegate.
+
+    \section2 Anatomy
+
+    The basic anatomy of a padded delegate is like this:
 
     \pre
     +----------------------------------------------------------+
@@ -26,6 +37,29 @@ import "private"
     |                      bottom padding                      |
     +----------------------------------------------------------+
     \endpre
+
+    All contents that are added as direct children of the \l PaddedDelegate
+    component are inserted into the content item in the center of the
+    delegate.
+
+    Custom contents can be added to the left and the right of the item.
+
+    The default padding adds the standard page margin to both sides and
+    standard spacing between delegates. These values usually don't have to be
+    changed unless you know what you are doing.
+
+
+    \section2 Centering custom content
+
+    When building a custom delegate that should have vertically centered content,
+    make sure to put all custom content into a container. Do not set set
+    its vertical center anchor! Instead, assing the container to the
+    \l centeredContainer property.
+
+    This makes sure that the container is vertically centered without causing
+    any binding loops on the item's height.
+
+    \sa OneLineDelegate, TwoLineDelegate, ThreeLineDelegate, DelegateColumn
 */
 ListItem {
     id: root
