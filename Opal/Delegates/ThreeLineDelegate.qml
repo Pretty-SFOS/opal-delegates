@@ -90,36 +90,33 @@ PaddedDelegate {
     Column {
         id: contentColumn
         width: parent.width
-        spacing: Theme.paddingSmall
+        anchors.verticalCenter: parent.verticalCenter
 
-        Label {
+        OptionalLabel {
             id: _line0
             width: parent.width
             text: root.title
             font.pixelSize: Theme.fontSizeSmall
-            wrapMode: Text.Wrap
 
             palette.primaryColor: Theme.secondaryHighlightColor
             palette.highlightColor: Theme.highlightColor
         }
 
-        Label {
+        OptionalLabel {
             id: _line1
             width: parent.width
             text: root.text
             font.pixelSize: Theme.fontSizeMedium
-            wrapMode: Text.Wrap
 
             palette.primaryColor: Theme.primaryColor
             palette.highlightColor: Theme.highlightColor
         }
 
-        Label {
+        OptionalLabel {
             id: _line2
             width: parent.width
             text: root.description
             font.pixelSize: Theme.fontSizeSmall
-            wrapMode: Text.Wrap
 
             palette.primaryColor: Theme.secondaryColor
             palette.highlightColor: Theme.secondaryHighlightColor
