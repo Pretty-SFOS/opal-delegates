@@ -75,6 +75,9 @@ ListItem {
         topBottom: all == 0 && top == 0 && bottom == 0 ? __defaultTopBottom : 0
     }
 
+    function toggleWrappedText(label) {
+        label.wrapped = !label.wrapped
+    }
 
     contentHeight: Math.max(
           padding.effectiveTop
