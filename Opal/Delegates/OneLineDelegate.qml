@@ -15,6 +15,7 @@ PaddedDelegate {
 
     Label {
         id: _line1
+        anchors.verticalCenter: parent.verticalCenter
         width: parent.width
         text: root.text
         font.pixelSize: Theme.fontSizeMedium
