@@ -1,9 +1,9 @@
-//@ This file is part of opal-delegates.
-//@ https://github.com/Pretty-SFOS/opal-delegates
-//@ SPDX-FileCopyrightText: 2023 Peter G. (nephros)
-//@ SPDX-FileCopyrightText: 2024 Mirian Margiani
-//@ SPDX-License-Identifier: GPL-3.0-or-later
-
+/*
+ * This file is part of harbour-opal.
+ * SPDX-License-Identifier: Apache-2.0
+ * SPDX-FileCopyrightText: 2023 Peter G. (nephros)
+ * SPDX-FileCopyrightText: 2024 Mirian Margiani
+ */
 import QtQuick 2.0
 import Sailfish.Silica 1.0 as S
 import Opal.Delegates 1.0 as D
@@ -12,78 +12,16 @@ S.Page {
     id: root
     allowedOrientations: S.Orientation.All
 
-    ListModel {
-        id: fruitModel
-
-        ListElement {
-            name: qsTr("Apple")
-            price: qsTr("2.95/kg")
-            desc: qsTr("a juicy fruit!")
-            note: qsTr("A is for Apple")
-        }
-        ListElement {
-            name: qsTr("Banana")
-            price: qsTr("1.05/pc")
-            desc: qsTr("a yellow fruit!")
-            note: qsTr("Oh| Banana!")
-        }
-        ListElement {
-            name: qsTr("A basket full of exotic fruits")
-            price: qsTr("15.99/pc")
-            desc: qsTr("fruits!")
-            note: qsTr("Suitable as a generous gift\nBuy now!")
-        }
-        ListElement {
-            name: qsTr("Nut")
-            price: qsTr("0.99/bag")
-            desc: qsTr("")
-            note: qsTr("not a fruit.")
-        }
-    }
-
-    ListModel {
-        id: chatModel
-
-        ListElement {
-            nick: qsTr("SamGee")
-            status: qsTr("online")
-            when: qsTr("yesterday")
-            post: qsTr("@mrunderhill: are there any taters left?")
-            statusType: "online"
-        }
-        ListElement {
-            nick: qsTr("Sauron")
-            status: qsTr("busy")
-            when: qsTr("3rd age")
-            post: qsTr("You cannot hide. I see you. There is no life in the void. Only death.")
-            statusType: "busy"
-        }
-        ListElement {
-            nick: qsTr("Aragorn")
-            status: qsTr("away")
-            when: qsTr("mid-day")
-            post: qsTr("Not idly do the leaves of Lorien fall...")
-            statusType: "away"
-        }
-    }
+    FruitModel { id: fruitModel }
+    ChatModel { id: chatModel }
 
     Component {
-        id: fruitMenu
+        id: dummyMenu
 
         S.ContextMenu {
             S.MenuItem {
-                text: qsTr("Add to Shopping Basket")
-                onClicked: pageStack.push("EmptyDummyPage.qml")
-            }
-        }
-    }
-
-    Component {
-        id: chatMenu
-
-        S.ContextMenu {
-            S.MenuItem {
-                text: qsTr("Reply")
+                text: qsTr("Example action", "as in: “take an action”, " +
+                           "this is just a dummy placeholder")
                 onClicked: pageStack.push("EmptyDummyPage.qml")
             }
         }
@@ -108,45 +46,141 @@ S.Page {
             }
 
             S.SectionHeader {
-                text: "TwoLineDelegate"
+                text: qsTr("Anatomy")
             }
 
-            S.Label {
-                x: S.Theme.horizontalPageMargin
-                width: parent.width - 2*x
-                wrapMode: Text.Wrap
-                color: S.Theme.secondaryHighlightColor
-                font.pixelSize: S.Theme.fontSizeSmall
-                text: qsTr("The “TwoLineDelegate” component can be used to create " +
-                           "a list of things with information in two lines.") + " " +
-                      qsTr("Optionally, rows can be alternatingly highlighted.")
+            GalleryLabel {
+                text: qsTr("Delegates are based on the “PaddedDelegate” component. " +
+                           "It provides outer padding on all sides, as well as three " +
+                           "optional content parts: left, center, and right.")
+            }
+
+            D.PaddedDelegate {
+                property int index: 2
+                showOddEven: emphasizeRows.checked
+
+                padding.topBottom: S.Theme.paddingLarge
+                spacing: S.Theme.paddingMedium
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: S.Theme.rgba(S.Theme.secondaryHighlightColor, 0.5)
+                }
+
+                S.Label {
+                    anchors.centerIn: parent
+                    text: "contentItem"
+                    font.pixelSize: S.Theme.fontSizeTiny
+                }
+
+                leftItem: Item {
+                    width: S.Theme.itemSizeMedium
+                    height: width
+
+                    Rectangle {
+                        anchors.fill: parent
+                        color: S.Theme.rgba(S.Theme.secondaryHighlightColor, 0.5)
+                    }
+
+                    S.Label {
+                        anchors.centerIn: parent
+                        text: "leftItem"
+                        font.pixelSize: S.Theme.fontSizeTiny
+                    }
+                }
+
+                rightItem: Item {
+                    width: S.Theme.itemSizeMedium
+                    height: width
+
+                    Rectangle {
+                        anchors.fill: parent
+                        color: S.Theme.rgba(S.Theme.secondaryHighlightColor, 0.5)
+                    }
+
+                    S.Label {
+                        anchors.centerIn: parent
+                        text: "rightItem"
+                        font.pixelSize: S.Theme.fontSizeTiny
+                    }
+                }
+            }
+
+            GalleryLabel {
+                text: qsTr("Rows can be highlighted alternatingly to make them " +
+                           "more distinct.")
             }
 
             S.TextSwitch {
-                id: emphasizeRowsFirst
+                id: emphasizeRows
                 text: qsTr("Emphasize rows")
                 checked: false
             }
 
-            Column {
-                // Note: if your delegates are guaranteed to be the same
-                // sized when rendered, you can alternatively use Silica's
-                // ColumnView here. ColumnView has better performance for
-                // long lists, but it cuts your view off at the bottom if
-                // your delegates have different sizes.
-                width: parent.width
+            S.SectionHeader {
+                text: "OneLineDelegate"
+            }
 
-                Repeater {
-                    model: fruitModel
-                    delegate: D.TwoLineDelegate {
-                        title: name
-                        text: note
-                        hint: price
-                        leftItem: S.Icon {
-                            source: "image://theme/icon-m-favorite"
+            GalleryLabel {
+                text: qsTr("This component has only one content line. Left " +
+                           "and right contents can be customized.")
+            }
+
+            D.DelegateColumn {
+                model: chatModel
+                delegate: D.OneLineDelegate {
+                    text: post
+                    showOddEven: emphasizeRows.checked
+                    menu: dummyMenu
+
+                    leftItem: D.DelegateInfoItem {
+                        title: nick
+                        description: when
+
+                        titleLabel.palette.primaryColor: highlightColor
+                        titleLabel.palette.highlightColor: S.Theme.secondaryHighlightColor
+
+                        property color highlightColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
+                        property color baseColor: {
+                            if (statusType == "online") "green"
+                            else if (statusType == "busy") "orange"
+                            else if (statusType == "away") "red"
+                            else S.Theme.secondaryColor
                         }
-                        showOddEven: emphasizeRowsFirst.checked
-                        menu: fruitMenu
+                    }
+                }
+            }
+
+            S.SectionHeader {
+                text: "TwoLineDelegate"
+            }
+
+            GalleryLabel {
+                text: qsTr("This component has two content lines. The " +
+                           "left and right items use “DelegateIconItem” and " +
+                           "“DelegateInfoItem” respectively.")
+            }
+
+            D.DelegateColumn {
+                model: fruitModel
+                delegate: D.TwoLineDelegate {
+                    text: name
+                    description: desc
+
+                    showOddEven: emphasizeRows.checked
+                    menu: dummyMenu
+
+                    leftItem: D.DelegateIconItem {
+                        source: "image://theme/icon-m-favorite"
+                    }
+                    rightItem: D.DelegateInfoItem {
+                        text: price
+                        description: qsTr("per kg")
+                        fixedWidth: S.Theme.itemSizeMedium
+                    }
+
+                    onClicked: {
+                        toggleWrappedText(descriptionLabel)
                     }
                 }
             }
@@ -155,114 +189,78 @@ S.Page {
                 text: "ThreeLineDelegate"
             }
 
-            S.Label {
-                x: S.Theme.horizontalPageMargin
-                width: parent.width - 2*x
-                wrapMode: Text.Wrap
-                color: S.Theme.secondaryHighlightColor
-                font.pixelSize: S.Theme.fontSizeSmall
-                text: qsTr("The “ThreeLineDelegate” component has an extra third " +
-                           "content line for least important information.") + " " +
-                      qsTr("Optionally, rows can be alternatingly highlighted.")
+            GalleryLabel {
+                text: qsTr("This component has three content lines. All lines " +
+                           "are optional and will be hidden if they are empty.")
             }
 
-            S.TextSwitch {
-                id: emphasizeRowsSecond
-                text: qsTr("Emphasize rows")
-                checked: false
-            }
+            D.DelegateColumn {
+                model: fruitModel
+                delegate: D.ThreeLineDelegate {
+                    title: sale
+                    text: name
+                    description: desc
 
-            Column {
-                width: parent.width
+                    showOddEven: emphasizeRows.checked
+                    menu: dummyMenu
 
-                Repeater {
-                    model: fruitModel
-                    delegate: D.ThreeLineDelegate {
-                        title: name
-                        text: note
-                        context: desc
-                        hint: price
-                        leftItem: S.Icon {
-                            source: "image://theme/icon-m-favorite"
-                        }
-                        showOddEven: emphasizeRowsSecond.checked
-                        menu: fruitMenu
+                    onClicked: {
+                        toggleWrappedText(descriptionLabel)
                     }
                 }
             }
 
-            S.SectionHeader {
-                text: "CompactDelegate"
+            GalleryLabel {
+                text: qsTr("All contents can be customized. Complex content items are " +
+                           "possible.")
             }
 
-            S.Label {
-                x: S.Theme.horizontalPageMargin
-                width: parent.width - 2*x
-                wrapMode: Text.Wrap
-                color: S.Theme.secondaryHighlightColor
-                font.pixelSize: S.Theme.fontSizeSmall
-                text: qsTr("The “CompactDelegate” has a primary and secondary " +
-                           "content line. Lines are not wrapped. It can also " +
-                           "optionally show an icon on the left.")
-            }
-
-            S.ColumnView {
-                itemHeight: S.Theme.itemSizeSmall
+            D.DelegateColumn {
                 model: chatModel
-                delegate: D.CompactDelegate {
+                delegate: D.ThreeLineDelegate {
+                    id: delegate
                     title: nick
                     text: post
-                    context: status
-                    leftItem: S.Icon {
-                        width: S.Theme.iconSizeSmall
-                        height: S.Theme.iconSizeSmall
-                        source: (nick === "Sauron") ? "image://theme/icon-splus-show-password?"
-                                                      + "darkorange" : "image://theme/icon-m-chat"
+                    description: when
+                    showOddEven: emphasizeRows.checked
+
+                    leftItem: D.DelegateIconItem {
+                        source: "image://theme/icon-m-outline-chat"
                     }
-                    menu: chatMenu
-                }
-            }
 
-            S.SectionHeader {
-                text: qsTr("Customization")
-            }
-
-            S.Label {
-                x: S.Theme.horizontalPageMargin
-                width: parent.width - 2*x
-                wrapMode: Text.Wrap
-                color: S.Theme.secondaryHighlightColor
-                font.pixelSize: S.Theme.fontSizeSmall
-                text: qsTr("Colors and other properties can be " +
-                           "freely customized for each line.")
-            }
-
-            Column {
-                width: parent.width
-
-                Repeater {
-                    model: chatModel
-                    delegate: D.ThreeLineDelegate {
-                        title: nick
-                        text: post
-                        context: when
-                        hint: status
-                        menu: chatMenu
-                        showOddEven: true
-
-                        hintLabel.color: {
-                            if (statusType == "online") "green"
-                            else if (statusType == "busy") "orange"
-                            else if (statusType == "away") "red"
-                            else S.Theme.secondaryColor
+                    Row {
+                        spacing: S.Theme.paddingMedium
+                        anchors {
+                            bottom: parent.bottom
+                            bottomMargin: S.Theme.paddingSmall
+                            right: parent.right
                         }
 
-                        titleLabel.color: Qt.tint(hintLabel.color, S.Theme.rgba(S.Theme.highlightColor, 0.8))
-                        textLabel.color: S.Theme.primaryColor
-                        contextLabel {
-                            color: S.Theme.secondaryColor
-                            horizontalAlignment: Text.AlignRight
-                            font.pixelSize: S.Theme.fontSizeExtraSmall
+                        D.OptionalLabel {
+                            id: statusLabel
+                            text: status
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: S.Theme.fontSizeSmall
+
+                            palette.primaryColor: statusMark.highlightColor
+                            palette.highlightColor: S.Theme.secondaryHighlightColor
+                        }
+
+                        Rectangle {
+                            id: statusMark
+                            width: S.Theme.iconSizeExtraSmall * 2
+                            height: S.Theme.iconSizeExtraSmall * 0.3
+                            anchors.bottom: statusLabel.baseline
+                            radius: height
+                            color: highlighted ? highlightColor : baseColor
+
+                            property color highlightColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
+                            property color baseColor: {
+                                if (statusType == "online") "green"
+                                else if (statusType == "busy") "orange"
+                                else if (statusType == "away") "red"
+                                else S.Theme.secondaryColor
+                            }
                         }
                     }
                 }

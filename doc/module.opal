@@ -49,7 +49,7 @@ mainLicenseSpdx: GPL-3.0-or-later
 #
 # Example:
 # extraGalleryPages: page1.qml page2.qml
-extraGalleryPages: none
+extraGalleryPages: ChatModel.qml FruitModel.qml GalleryLabel.qml
 
 # where the module's sources are located
 # This url will be automatically generated from the default repository url and
