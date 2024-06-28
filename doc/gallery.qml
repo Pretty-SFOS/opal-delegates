@@ -226,6 +226,8 @@ S.Page {
                     description: when
                     showOddEven: emphasizeRows.checked
 
+                    interactive: false
+
                     leftItem: D.DelegateIconItem {
                         source: "image://theme/icon-m-outline-chat"
                     }

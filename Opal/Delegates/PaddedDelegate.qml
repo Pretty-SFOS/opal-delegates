@@ -55,6 +55,8 @@ ListItem {
 
     // ------------------------------------------------------------------------
 
+    property bool interactive: true
+
     /*! An Item such as an Icon displayed on the left side of the Delegate
     */
     property Component leftItem: null
@@ -77,6 +79,18 @@ ListItem {
 
     function toggleWrappedText(label) {
         label.wrapped = !label.wrapped
+    }
+
+    opacity: enabled ? 1.0 : Theme.opacityLow
+
+    Binding on highlighted {
+        when: !interactive
+        value: false
+    }
+
+    Binding on _backgroundColor {
+        when: !interactive
+        value: "transparent"
     }
 
     contentHeight: Math.max(
