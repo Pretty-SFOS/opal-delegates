@@ -10,7 +10,7 @@
 # Include Opal's default configuration file from your project's root directory.
 include(opal-qdoc.qdocconf)
 
-description = This module provides a selection of delegate components for use in QML views.
+description = This module provides delegate items for QML views, so you can concentrate on handling the data, not formatting the presentation.
 
 # The headerdirs variable specifies the directories containing the header files
 # associated with the .cpp source files used in the documentation.
