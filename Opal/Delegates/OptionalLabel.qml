@@ -6,10 +6,43 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
 
+
+/*!
+    \qmltype OptionalLabel
+    \inqmlmodule Opal.Delegates
+    \inherits Sailfish.Silica.Label
+
+    \brief A label that hides itself when empty.
+
+    This text label takes up no space when its \c text
+    property is empty. However, you can access the
+    text's dimensions via the \l metrics property.
+
+    The label can toggle between a styled one-line view
+    that fades overflowing text, and a multi-line view
+    that grows in height to fit all text.
+
+    \sa PaddedDelegate, OneLineDelegate, TwoLineDelegate, ThreeLineDelegate,
+        DelegateIconItem, DelegateInfoItem, DelegateColumn
+*/
 Label {
     id: root
 
+    /*!
+      This property defines whether the text is wrapped.
+
+      If this is enabled, the label will grow to fit all text.
+      Otherwise, overflowing text will fade out at the end.
+
+      \default false
+    */
     property bool wrapped: false
+
+    /*!
+      This property gives access to text metrics.
+
+      \sa TextMetrics
+    */
     property alias metrics: metricsItem
 
     TextMetrics {

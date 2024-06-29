@@ -6,20 +6,134 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
 
+/*!
+    \qmltype DelegateInfoItem
+    \inqmlmodule Opal.Delegates
+    \inherits Item
+
+    \brief Item for adding an info box to a delegate.
+
+    This item can be used to add an info box as a delegate's
+    \l {PaddedDelegate.leftItem} or \l {PaddedDelegate.rightItem}.
+
+    \section2 Contents
+
+    The three texts are all optional and have different sizes
+    by default. The \l title text is small and at the top.
+    The \l text text is large and in the middle. The \l description
+    text is small and at the bottom.
+
+    If one of the texts is empty, the others will move together
+    so that they are vertically centered without leaving gaps.
+
+    \section2 Sizing behaviour
+
+    By default, the item will grow to fit all contents. It will
+    also shrink down to the size defined in \l minWidth if the
+    content is short.
+
+    You can set the \l fixedWidth property to disable this behaviour.
+    In that case, overflowing text will fade out to fit in.
+
+    \section2 Example
+
+    \qml
+    OneLineDelegate {
+        text: "It's hot today"
+        interactive: false
+
+        rightItem: DelegateInfoItem {
+            title: qsTr("Temperature")
+            text: "36.3"
+            description: qsTr("°C")
+            fixedWidth: S.Theme.itemSizeLarge
+        }
+    }
+    \endqml
+
+    \sa PaddedDelegate, DelegateIconItem
+*/
 Item {
     id: root
     width: Math.max(column.width, minWidth)
     height: Math.max(parent.height, column.height)
 
+    /*!
+      This property defines the minimum width of the item.
+
+      This value is ignored if \l fixedWidth is set to a
+      value above zero.
+
+      \default Theme.itemSizeMedium
+    */
     property int minWidth: Theme.itemSizeMedium
+
+    /*!
+      This property defines the fixed width of the item.
+
+      If this value is set to zero, the item will grow and
+      shrink (at maximum down to \l minWidth) to fit the
+      content.
+
+      \default 0
+    */
     property int fixedWidth: 0
 
+    /*!
+      This property defines the top text.
+
+      The title text is small and at the top of the box.
+
+      All texts are optional and will take up no space if
+      they are empty.
+    */
     property string title
+
+    /*!
+      This property defines the center text.
+
+      The title text is large and at the center of the box.
+
+      All texts are optional and will take up no space if
+      they are empty.
+    */
     property string text
+
+    /*!
+      This property defines the bottom text.
+
+      The title text is small and at the bottom of the box.
+
+      All texts are optional and will take up no space if
+      they are empty.
+    */
     property string description
 
+    /*!
+      This property gives access to the top label.
+
+      You can use this property to customize all properties
+      of the \l OptionalLabel item that is used
+      for this text.
+    */
     readonly property alias titleLabel: _line0
+
+    /*!
+      This property gives access to the center label.
+
+      You can use this property to customize all properties
+      of the \l OptionalLabel item that is used
+      for this text.
+    */
     readonly property alias textLabel: _line1
+
+    /*!
+      This property gives access to the bottom label.
+
+      You can use this property to customize all properties
+      of the \l OptionalLabel item that is used
+      for this text.
+    */
     readonly property alias descriptionLabel: _line2
 
     Column {
