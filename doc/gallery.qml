@@ -131,15 +131,16 @@ S.Page {
                 delegate: D.OneLineDelegate {
                     text: post
                     showOddEven: emphasizeRows.checked
-                    menu: dummyMenu
+                    interactive: false
+                    textLabel.wrapped: true
 
                     leftItem: D.DelegateInfoItem {
                         title: nick
                         description: when
 
                         titleLabel.palette {
-                            primaryColor: highlightColor
-                            highlightColor: S.Theme.secondaryHighlightColor
+                            primaryColor: normalColor
+                            highlightColor: highlightColor
                         }
                         titleLabel.anchors {
                             right: titleLabel.parent.right
@@ -150,7 +151,8 @@ S.Page {
                             horizontalCenter: undefined
                         }
 
-                        property color highlightColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
+                        property color normalColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
+                        property color highlightColor: normalColor
                         property color baseColor: {
                             if (statusType == "online") "green"
                             else if (statusType == "busy") "orange"
@@ -233,8 +235,7 @@ S.Page {
                     text: post
                     description: when
                     showOddEven: emphasizeRows.checked
-
-                    interactive: false
+                    menu: dummyMenu
 
                     leftItem: D.DelegateIconItem {
                         source: "image://theme/icon-m-outline-chat"
