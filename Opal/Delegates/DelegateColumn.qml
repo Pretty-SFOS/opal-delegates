@@ -16,7 +16,7 @@ import Sailfish.Silica 1.0
     When showing multiple lists of delegates on the same
     page, it is often cumbersome to use \c SilicaListView.
 
-    Instead, you can usually use \l {Sailfish.Silica.ColumnView}.
+    Instead, you can usually use \l {Sailfish::Silica::ColumnView}.
 
     However, Silica's \c ColumnView breaks when delegates
     have dynamic sizes. In that case, you can use this component.

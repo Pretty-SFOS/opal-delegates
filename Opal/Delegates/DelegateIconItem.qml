@@ -14,7 +14,7 @@ import Sailfish.Silica 1.0
     \brief Item for adding an icon to a delegate.
 
     This item can be used to add an icon as a delegate's
-    \l {PaddedDelegate.leftItem} or \l {PaddedDelegate.rightItem}.
+    \l {PaddedDelegate::leftItem} or \l {PaddedDelegate::rightItem}.
 
     The default size is \c {Theme.iconSizeMedium}. Change the
     size by changing the \c width property. The height is

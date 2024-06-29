@@ -20,7 +20,7 @@ import Sailfish.Silica 1.0
 
     The delegate is structured like this:
 
-    \pre
+    \code
     +----------------------------------------------------------+
     |                        top padding                       |
     |         +--------------------------------------+         |
@@ -29,18 +29,18 @@ import Sailfish.Silica 1.0
     |         +--------------------------------------+         |
     |                      bottom padding                      |
     +----------------------------------------------------------+
-    \endpre
+    \endcode
 
     \section2 Wrapped text
 
     The text is not wrapped by default. You can configure that
-    by changing the \l {OptionalLabel.wrapped} property of
+    by changing the \l {OptionalLabel::wrapped} property of
     the label. However, note that the height of the delegate
     will become dynamic if text is wrapped.
 
     You can programmatically switch between wrapped and
     non-wrapped views by passing the label to the
-    \l {PaddedDelegate.toggleWrappedText} function:
+    \l {PaddedDelegate::toggleWrappedText} function:
 
     \qml
     toggleWrappedText(textLabel)
@@ -48,8 +48,8 @@ import Sailfish.Silica 1.0
 
     \section2 Side content
 
-    You can define custom content in the \l {PaddedDelegate.leftItem}
-    and \l {PaddedDelegate.rightItem} properties. Common uses
+    You can define custom content in the \l {PaddedDelegate::leftItem}
+    and \l {PaddedDelegate::rightItem} properties. Common uses
     are to show an icon or some additional info. For this, you can
     use \l DelegateIconItem and \l DelegateInfoItem respectively.
 
@@ -86,7 +86,7 @@ PaddedDelegate {
 
       The text is shown vertically centered and is not
       wrapped by default. You can change that by changing
-      the \l {OptionalLabel.wrapped} property.
+      the \l {OptionalLabel::wrapped} property.
     */
     property string text
 

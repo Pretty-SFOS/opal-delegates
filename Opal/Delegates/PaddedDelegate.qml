@@ -27,7 +27,7 @@ import "private"
 
     The basic anatomy of a padded delegate is like this:
 
-    \pre
+    \code
     +----------------------------------------------------------+
     |                        top padding                       |
     |         +--------------------------------------+         |
@@ -36,7 +36,7 @@ import "private"
     |         +--------------------------------------+         |
     |                      bottom padding                      |
     +----------------------------------------------------------+
-    \endpre
+    \endcode
 
     All contents that are added as direct children of the \l PaddedDelegate
     component are inserted into the content item in the center of the
@@ -289,7 +289,7 @@ ListItem {
       Provide a \l OptionalLabel as argument to toggle its
       text wrapping mode.
 
-      You can also manually set the \l {OptionalLabel.wrapped}
+      You can also manually set the \l {OptionalLabel::wrapped}
       property.
 
       \sa OptionalLabel

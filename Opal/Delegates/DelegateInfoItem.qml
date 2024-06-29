@@ -14,7 +14,7 @@ import Sailfish.Silica 1.0
     \brief Item for adding an info box to a delegate.
 
     This item can be used to add an info box as a delegate's
-    \l {PaddedDelegate.leftItem} or \l {PaddedDelegate.rightItem}.
+    \l {PaddedDelegate::leftItem} or \l {PaddedDelegate::rightItem}.
 
     \section2 Contents
 
