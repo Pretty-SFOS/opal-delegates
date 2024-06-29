@@ -10,7 +10,7 @@ concentrate on handling the data, not formatting the presentation.
 
 ## Screenshots
 
-TBD.
+Screenshots can be found in the [doc](doc/) directory.
 
 ## Example code
 
