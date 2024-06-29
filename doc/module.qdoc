@@ -11,5 +11,5 @@
     \title Opal.Delegates
     \brief Module providing view delegates
 
-    This module provides a selection of delegate Components for use in QML views.
+    This module provides a selection of delegate components for use in QML views.
 */
