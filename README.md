@@ -1,18 +1,17 @@
 <!--
+SPDX-FileCopyrightText: 2023-2024 Mirian Margiani
 SPDX-FileCopyrightText: 2023 Peter G. (nephros)
 SPDX-License-Identifier: GFDL-1.3-or-later
 -->
 
-# Delegate Components for Sailfish apps
+# Delegates
 
-A handy collection of ListItems to be used as a delegate in views, so you can
-concentrate on handling the data, not formatting the presentation.
+QML module for easy to use view delegates in Sailfish apps
 
-## Screenshots
+This module provides list items for views, so you can concentrate on handling
+the data, not formatting the presentation.
 
-Screenshots can be found in the [doc](doc/) directory.
-
-## Example code
+## Usage
 
 ```{qml}
 import QtQuick 2.0
@@ -32,11 +31,14 @@ ListView {
 Advanced features are just as easy to use and extensive documentation is
 available through QtCreator.
 
+## Screenshots
+
+Screenshots can be found in the [doc](doc/) directory.
+
 ## How to use
 
 You do not need to clone this repository if you only intend to use the module in
-another project. Simply download the
-[latest release bundle](https://github.com/Pretty-SFOS/opal-delegates/releases/latest).
+another project. Simply download the latest release bundle from the "Releases" page.
 
 ### Setup
 
@@ -45,18 +47,43 @@ Follow the main documentation for installing Opal modules
 
 ### Configuration
 
-See [`doc/gallery.qml`](doc/gallery.qml) for some examples.
-
+See [`doc/gallery.qml`](doc/gallery.qml) for an example. Read the file to get
+started.
 
 ### Documentation
 
-Extensive documentation is included in the release bundle and can be added to
+Documentation is included in the release bundle and can be added to
 QtCreator via Extras → Settings → Help → Documentation → Add.
+
+## Translations
+
+To **use** packaged translations in your project, follow the main documentation for
+using Opal modules [here](https://github.com/Pretty-SFOS/opal#using-opal).
+
+You can also **contribute** translations. If an app uses Opal modules, consider
+updating its translations at the source (i.e. here), so that all Opal users can
+benefit from it. Translations are managed using
+[Weblate](https://hosted.weblate.org/projects/opal).
+
+Please prefer Weblate over pull requests (which are still welcome, of course).
+If you just found a minor problem, you can also
+[leave a comment in the forum](https://forum.sailfishos.org/t/opal-qml-components-for-app-development/15801)
+or [open an issue](https://github.com/Pretty-SFOS/opal/issues/new).
+
+Please include the following details:
+
+1. the language you were using
+2. where you found the error
+3. the incorrect text
+4. the correct translation
+
+See [the Qt documentation](https://doc.qt.io/qt-5/qml-qtqml-date.html#details) for
+details on how to translate date formats to your local format.
 
 ## License
 
-    Copyright (C) 2023  Peter G. (nephros)
-    Copyright (C) 2024  Mirian Margiani
+    Copyright (C)  Peter G. (nephros)
+    Copyright (C)  Mirian Margiani
     Program: opal-delegates
 
     This program is free software: you can redistribute it and/or modify
