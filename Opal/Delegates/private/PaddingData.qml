@@ -47,7 +47,7 @@ QtObject {
 
       Priority: lowest
 
-      \default 0
+      \defaultValue 0
     */
     property int all
 
@@ -56,7 +56,7 @@ QtObject {
 
       Priority: medium
 
-      \default Theme.horizontalPageMargin
+      \defaultValue Theme.horizontalPageMargin
     */
     property int leftRight  // default value is assigned in PaddedDelegate
 
@@ -65,7 +65,7 @@ QtObject {
 
       Priority: medium
 
-      \default Theme.paddingSmall
+      \defaultValue Theme.paddingSmall
     */
     property int topBottom
 
@@ -74,7 +74,7 @@ QtObject {
 
       Priority: highest
 
-      \default 0
+      \defaultValue 0
     */
     property int top
 
@@ -83,7 +83,7 @@ QtObject {
 
       Priority: highest
 
-      \default 0
+      \defaultValue 0
     */
     property int bottom
 
@@ -92,7 +92,7 @@ QtObject {
 
       Priority: highest
 
-      \default 0
+      \defaultValue 0
     */
     property int left
 
@@ -101,7 +101,7 @@ QtObject {
 
       Priority: highest
 
-      \default 0
+      \defaultValue 0
     */
     property int right
 

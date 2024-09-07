@@ -126,7 +126,7 @@ ListItem {
       It is usually preferably to not use this feature. Instead, try to
       make your delegates look clear on their own.
 
-      \default false
+      \defaultValue false
     */
     property bool showOddEven: false
 
@@ -135,7 +135,7 @@ ListItem {
 
       This value is only used if \l showOddEven is set to \c true.
 
-      \default \c "transparent"
+      \defaultValue \c "transparent"
     */
     property color oddColor: "transparent"
 
@@ -144,7 +144,7 @@ ListItem {
 
       This value is only used if \l showOddEven is set to \c true.
 
-      \default Theme.highlightBackgroundColor
+      \defaultValue Theme.highlightBackgroundColor
     */
     property color evenColor: Theme.highlightBackgroundColor
 
@@ -160,7 +160,7 @@ ListItem {
       handled. To avoid confusion, do not set the \c onClicked
       or \c menu properties for non-interactive delegates.
 
-      \default true
+      \defaultValue true
     */
     property bool interactive: true
 
@@ -215,7 +215,7 @@ ListItem {
       than the height defined in \l minContentHeight, and make sure
       to set the \c fixedWidth property of your side items.
 
-      \default false
+      \defaultValue false
 
       \sa leftItem, rightItem, DelegateIconItem, DelegateInfoItem
     */
@@ -252,7 +252,7 @@ ListItem {
       The delegate may grow and shrink to fit its content but it
       will never shrink below this height.
 
-      \default Theme.itemSizeMedium
+      \defaultValue Theme.itemSizeMedium
     */
     property int minContentHeight: Theme.itemSizeMedium
 

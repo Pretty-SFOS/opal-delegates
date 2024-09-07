@@ -34,7 +34,7 @@ Label {
       If this is enabled, the label will grow to fit all text.
       Otherwise, overflowing text will fade out at the end.
 
-      \default false
+      \defaultValue false
     */
     property bool wrapped: false
 
