@@ -18,7 +18,7 @@ import Sailfish.Silica 1.0
 
     \section2 Contents
 
-    The three texts are all optional and have different sizes
+    The three texts are all optional and have different font sizes
     by default. The \l title text is small and at the top.
     The \l text text is large and in the middle. The \l description
     text is small and at the bottom.
@@ -28,9 +28,9 @@ import Sailfish.Silica 1.0
 
     \section2 Sizing behaviour
 
-    By default, the item will grow to fit all contents. It will
-    also shrink down to the size defined in \l minWidth if the
-    content is short.
+    By default, the item will grow in width to fit all contents. It will
+    also slim down to the size defined in \l minWidth if the
+    labels are short.
 
     You can set the \l fixedWidth property to disable this behaviour.
     In that case, overflowing text will fade out to fit in.
@@ -73,7 +73,7 @@ Item {
       This value is ignored if \l fixedWidth is set to a
       value above zero.
 
-      \default Theme.itemSizeMedium
+      \defaultValue Theme.itemSizeMedium
     */
     property int minWidth: Theme.itemSizeMedium
 
@@ -84,19 +84,9 @@ Item {
       shrink (at maximum down to \l minWidth) to fit the
       content.
 
-      \default 0
+      \defaultValue 0
     */
     property int fixedWidth: 0
-
-    /*!
-      This property defines the top text.
-
-      The title text is small and at the top of the box.
-
-      All texts are optional and will take up no space if
-      they are empty.
-    */
-    property string title
 
     /*!
       This property defines the horizontal alignment of the labels.
@@ -119,6 +109,16 @@ Item {
         else if (alignment == Qt.AlignRight) Text.AlignRight
         else Text.AlignHCenter
     }
+
+    /*!
+      This property defines the top text.
+
+      The title text is small and at the top of the box.
+
+      All texts are optional and will take up no space if
+      they are empty.
+    */
+    property string title
 
     /*!
       This property defines the center text.
