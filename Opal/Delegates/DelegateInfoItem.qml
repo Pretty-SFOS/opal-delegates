@@ -35,6 +35,15 @@ import Sailfish.Silica 1.0
     You can set the \l fixedWidth property to disable this behaviour.
     In that case, overflowing text will fade out to fit in.
 
+    \section2 Content alignment
+
+    By default, all labels are horizontally centered. This can be changed
+    by setting the \l alignment property.
+
+    When using centered alignment, make sure to set sane values for \l minWidth
+    or \l fixedWidth. Otherwise the labels in a list of entries are unevenly
+    centered.
+
     \section2 Example
 
     \qml
@@ -88,6 +97,28 @@ Item {
       they are empty.
     */
     property string title
+
+    /*!
+      This property defines the horizontal alignment of the labels.
+
+      Allowed values are \l Qt.AlignHCenter, \l Qt.AlignLeft,
+      and \l Qt.AlignRight.
+
+      \defaultValue Qt.AlignHCenter
+    */
+    property int alignment: Qt.AlignHCenter
+
+    /*!
+      This property maps the Qt alignment enum to the Text alignment enum.
+
+      \internal
+    */
+    property int __textAlignment: {
+        if (alignment == Qt.AlignHCenter) Text.AlignHCenter
+        else if (alignment == Qt.AlignLeft) Text.AlignLeft
+        else if (alignment == Qt.AlignRight) Text.AlignRight
+        else Text.AlignHCenter
+    }
 
     /*!
       This property defines the center text.
@@ -183,6 +214,103 @@ Item {
                 highlightColor: Theme.secondaryHighlightColor
             }
         }
+
+        states: [
+            State {
+                name: "alignLeft"
+                when: alignment == Qt.AlignLeft
+
+                AnchorChanges {
+                    target: column
+                    anchors.horizontalCenter: undefined
+                    anchors.left: parent.left
+                    anchors.right: undefined
+                }
+
+                PropertyChanges {
+                    target: _line0
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                AnchorChanges {
+                    target: _line0
+                    anchors.horizontalCenter: undefined
+                    anchors.left: parent.left
+                    anchors.right: undefined
+                }
+
+                PropertyChanges {
+                    target: _line1
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                AnchorChanges {
+                    target: _line1
+                    anchors.horizontalCenter: undefined
+                    anchors.left: parent.left
+                    anchors.right: undefined
+                }
+
+                PropertyChanges {
+                    target: _line2
+                    horizontalAlignment: Text.AlignLeft
+                }
+
+                AnchorChanges {
+                    target: _line2
+                    anchors.horizontalCenter: undefined
+                    anchors.left: parent.left
+                    anchors.right: undefined
+                }
+            },
+            State {
+                name: "alignRight"
+                when: alignment == Qt.AlignRight
+
+                AnchorChanges {
+                    target: column
+                    anchors.horizontalCenter: undefined
+                    anchors.left: undefined
+                    anchors.right: parent.right
+                }
+
+                PropertyChanges {
+                    target: _line0
+                    horizontalAlignment: Text.AlignRight
+                }
+
+                AnchorChanges {
+                    target: _line0
+                    anchors.horizontalCenter: undefined
+                    anchors.left: undefined
+                    anchors.right: parent.right
+                }
+
+                PropertyChanges {
+                    target: _line1
+                    horizontalAlignment: Text.AlignRight
+                }
+
+                AnchorChanges {
+                    target: _line1
+                    anchors.horizontalCenter: undefined
+                    anchors.left: undefined
+                    anchors.right: parent.right
+                }
+
+                PropertyChanges {
+                    target: _line2
+                    horizontalAlignment: Text.AlignRight
+                }
+
+                AnchorChanges {
+                    target: _line2
+                    anchors.horizontalCenter: undefined
+                    anchors.left: undefined
+                    anchors.right: parent.right
+                }
+            }
+        ]
     }
 
     states: [
@@ -205,7 +333,7 @@ Item {
                 width: fixedWidth
                 wrapped: false
                 horizontalAlignment: _line0.metrics.width > fixedWidth ?
-                                         Text.AlignLeft : Text.AlignHCenter
+                                         Text.AlignLeft : __textAlignment
             }
 
             AnchorChanges {
@@ -219,7 +347,7 @@ Item {
                 width: fixedWidth
                 wrapped: false
                 horizontalAlignment: _line1.metrics.width > fixedWidth ?
-                                         Text.AlignLeft : Text.AlignHCenter
+                                         Text.AlignLeft : __textAlignment
             }
 
             AnchorChanges {
@@ -233,7 +361,7 @@ Item {
                 width: fixedWidth
                 wrapped: false
                 horizontalAlignment: _line2.metrics.width > fixedWidth ?
-                                         Text.AlignLeft : Text.AlignHCenter
+                                         Text.AlignLeft : __textAlignment
             }
 
             AnchorChanges {
