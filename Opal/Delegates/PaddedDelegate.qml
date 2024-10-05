@@ -148,7 +148,7 @@ ListItem {
     */
     property color evenColor: Theme.highlightBackgroundColor
 
-    property bool _isOddRow: (index %2 != 0)
+    property bool _isOddRow: typeof index !== 'undefined' && (index % 2 != 0)
 
     /*!
       This property defines whether the delegate is interactive.
