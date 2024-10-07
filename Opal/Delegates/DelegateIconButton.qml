@@ -137,6 +137,8 @@ SilicaItem {
                  || (!! _delegate
                      && _delegate.interactive
                      && _delegate.down)
+                 || (!! _delegate
+                     && _delegate.menuOpen)
     enabled: !!_delegate ? _delegate.enabled : true
 
     MouseArea {
