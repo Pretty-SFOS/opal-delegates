@@ -48,7 +48,7 @@ import "private"
     standard spacing between delegates. These values usually don't have to be
     changed unless you know what you are doing.
 
-    \section2 Centering custom content
+    \section2 Custom content alignment
 
     When building a custom delegate that should have vertically centered content,
     make sure to put all custom content into a container like \c Column.
@@ -57,6 +57,10 @@ import "private"
 
     This makes sure that the container is vertically centered without causing
     any binding loops on the item's height.
+
+    The vertical alignment of side items can be changed through the
+    \l leftSideAlignment and \l rightSideAlignment properties. Side items are
+    vertically centered by default.
 
     \section2 Example
 
@@ -170,6 +174,13 @@ ListItem {
       Assign any visual item here to add extra content to the
       left side of the delegate.
 
+      The vertical alignment of side items can be changed through
+      the \l rightSideAlignment and \l leftSideAlignment properties.
+
+      If the side item has a property called \c _delegate, it will
+      be bound to the delegate object automatically. Important: the
+      property type must be \c var or the app will crash.
+
       \note it takes up no space if left undefined.
 
       \sa rightItem, DelegateIconItem, DelegateInfoItem
@@ -193,6 +204,13 @@ ListItem {
 
       Assign any visual item here to add extra content to the
       right side of the delegate.
+
+      The vertical alignment of side items can be changed through
+      the \l rightSideAlignment and \l leftSideAlignment properties.
+
+      If the side item has a property called \c _delegate, it will
+      be bound to the delegate object automatically. Important: the
+      property type must be \c var or the app will crash.
 
       \note it takes up no space if left undefined.
 
@@ -267,6 +285,30 @@ ListItem {
       \sa leftItem, rightItem
     */
     property int spacing: Theme.paddingMedium
+
+    /*!
+      This property defines the vertical alignment of the right side item.
+
+      Allowed values are \l Qt.AlignVCenter, \l Qt.AlignTop,
+      and \l Qt.AlignBottom.
+
+      \defaultValue Qt.AlignVCenter
+
+      \sa leftItem, rightItem
+    */
+    property int rightSideAlignment: Qt.AlignVCenter
+
+    /*!
+      This property defines the vertical alignment of the left side item.
+
+      Allowed values are \l Qt.AlignVCenter, \l Qt.AlignTop,
+      and \l Qt.AlignBottom.
+
+      \defaultValue Qt.AlignVCenter
+
+      \sa leftItem, rightItem
+    */
+    property int leftSideAlignment: Qt.AlignVCenter
 
     /*!
       This group defines the outer padding around the delegate.
@@ -355,12 +397,71 @@ ListItem {
             left: leftPaddingItem.right
             verticalCenter: parent.verticalCenter
         }
+        states: [
+            State {
+                when: leftSideAlignment == Qt.AlignVCenter
+                AnchorChanges {
+                    target: leftItemLoader
+                    anchors.verticalCenter: leftItemLoader.parent.verticalCenter
+                    anchors.top: undefined
+                    anchors.bottom: undefined
+                }
+            },
+            State {
+                when: leftSideAlignment == Qt.AlignTop
+                AnchorChanges {
+                    target: leftItemLoader
+                    anchors.verticalCenter: undefined
+                    anchors.top: topPaddingItem.bottom
+                    anchors.bottom: undefined
+                }
+            },
+            State {
+                when: leftSideAlignment == Qt.AlignBottom
+                AnchorChanges {
+                    target: leftItemLoader
+                    anchors.verticalCenter: undefined
+                    anchors.top: undefined
+                    anchors.bottom: bottomPaddingItem.top
+                }
+            }
+        ]
     }
 
     Loader {
         id: rightItemLoader
         sourceComponent: rightItem
         asynchronous: loadSideItemsAsync
+        states: [
+            State {
+                when: rightSideAlignment == Qt.AlignVCenter
+                AnchorChanges {
+                    target: rightItemLoader
+                    anchors.verticalCenter: rightItemLoader.parent.verticalCenter
+                    anchors.top: undefined
+                    anchors.bottom: undefined
+                }
+            },
+            State {
+                when: rightSideAlignment == Qt.AlignTop
+                AnchorChanges {
+                    target: rightItemLoader
+                    anchors.verticalCenter: undefined
+                    anchors.top: topPaddingItem.bottom
+                    anchors.bottom: undefined
+                }
+            },
+            State {
+                when: rightSideAlignment == Qt.AlignBottom
+                AnchorChanges {
+                    target: rightItemLoader
+                    anchors.verticalCenter: undefined
+                    anchors.top: undefined
+                    anchors.bottom: bottomPaddingItem.top
+                }
+            }
+        ]
+    }
         anchors {
             right: rightPaddingItem.left
             verticalCenter: parent.verticalCenter
