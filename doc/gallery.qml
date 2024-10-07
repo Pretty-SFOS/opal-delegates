@@ -184,7 +184,7 @@ S.Page {
                     rightItem: D.DelegateInfoItem {
                         text: price
                         description: qsTr("per kg")
-                        fixedWidth: S.Theme.itemSizeMedium
+                        alignment: Qt.AlignRight
                     }
 
                     onClicked: {
