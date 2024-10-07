@@ -152,7 +152,11 @@ ListItem {
     */
     property color evenColor: Theme.highlightBackgroundColor
 
+    // internal
     property bool _isOddRow: typeof index !== 'undefined' && (index % 2 != 0)
+
+    // internal
+    readonly property int _modelIndex: typeof index !== 'undefined' ? index : -1
 
     /*!
       This property defines whether the delegate is interactive.
@@ -326,6 +330,51 @@ ListItem {
     }
 
     /*!
+      This property registers the list view's drag handler to enable drag and drop.
+
+      Set this property to a reference to a valid \c ViewDragHandler instance
+      from the \c Opal.DragDrop module. Sorting items is then possible by grabbing
+      them by the automatically added drag handle.
+
+      When the drag handler is active, the right side item is hidden and the
+      delegate shows the grab handle instead. This behavior can be changed
+      by setting \l hideRightItemWhileDragging to \c false.
+
+      \note this only works if the delegate lives in a \c SilicaListView
+      or plain \c ListView.
+
+      \sa hideRightItemWhileDragging, draggable
+    */
+    property var /*ViewDragHandler*/ dragHandler: null
+
+    readonly property var _effectiveDragHandler: !!dragHandler
+        && dragHandler.hasOwnProperty('__opal_view_drag_handler') ?
+            dragHandler : null
+
+    /*!
+      This property defines whether the right side item is hidden while dragging.
+
+      When the drag handler is active, the right side item is hidden and the
+      delegate shows the grab handle instead. This behavior can be changed
+      by setting \l hideRightItemWhileDragging to \c false.
+
+      When this property is set to \c false, the grab handle is shown to the
+      right of the right side item.
+
+      \sa dragHandler, draggable
+    */
+    property bool hideRightItemWhileDragging: true
+
+    /*!
+      This property shows whether the item is draggable.
+
+      The item can be moved by drag and drop when a valid drag handler is
+      registered, and the drag handler is set to be active.
+    */
+    readonly property bool draggable:    !!_effectiveDragHandler
+                                      && !!_effectiveDragHandler.active
+
+    /*!
       This function toggles text wrapping in text labels.
 
       Provide a \l OptionalLabel as argument to toggle its
@@ -439,8 +488,15 @@ ListItem {
 
     Loader {
         id: rightItemLoader
+        visible: !hideRightItemWhileDragging || !dragHandleLoader.visible
         sourceComponent: rightItem
         asynchronous: loadSideItemsAsync
+        anchors {
+            right: dragHandleLoader.left
+            rightMargin: dragHandleLoader.width > 0 ? spacing : 0
+            verticalCenter: parent.verticalCenter
+        }
+
         Binding {
             target: !!rightItemLoader.item &&
                     rightItemLoader.item.hasOwnProperty('_delegate') ?
@@ -479,9 +535,37 @@ ListItem {
             }
         ]
     }
+
+    Loader {
+        id: dragHandleLoader
+        visible: status === Loader.Ready && draggable
+
+        // set as context for the drag handle
+        // The values must be passed on like this because it is
+        // not possible to set properties of the source component.
+        // We cannot use a Component because it is possible that
+        // the app developer chose not to install the DragDrop
+        // module, in which case loading would fail fatally. When
+        // loading by URL, it is non-fatal if loading fails.
+        property QtObject viewHandler: _effectiveDragHandler
+        property Item handledItem: root
+        property int modelIndex: root._modelIndex
+
+        source: !!_effectiveDragHandler ?
+            Qt.resolvedUrl("private/OptionalDragHandle.qml") : ""
+
+        asynchronous: true
         anchors {
             right: rightPaddingItem.left
             verticalCenter: parent.verticalCenter
+        }
+
+        Binding {
+            target: !!dragHandleLoader.item &&
+                    dragHandleLoader.item.hasOwnProperty('_delegate') ?
+                        dragHandleLoader.item : null
+            property: "_delegate"
+            value: root
         }
     }
 
@@ -495,6 +579,18 @@ ListItem {
             right: rightItemLoader.left
             rightMargin: rightItemLoader.width > 0 ? spacing : 0
             verticalCenter: parent.verticalCenter
+        }
+
+        states: State {
+            when: dragHandleLoader.visible
+            AnchorChanges {
+                target: contentItem
+                anchors.right: dragHandleLoader.left
+            }
+            PropertyChanges {
+                target: contentItem
+                anchors.rightMargin: dragHandleLoader.width > 0 ? spacing : 0
+            }
         }
     }
 

@@ -218,6 +218,20 @@ S.Page {
                 }
             }
 
+            S.SectionHeader {
+                text: qsTr("Drag and drop")
+            }
+
+            GalleryLabel {
+                text: qsTr("This module natively supports the drag-and-drop " +
+                                  "action for manually sorting lists via the Opal.DragDrop module. " +
+                                  "See the example page of Opal.DragDrop for details.")
+            }
+
+            S.SectionHeader {
+                text: qsTr("Complex customizations")
+            }
+
             GalleryLabel {
                 text: qsTr("All contents can be customized. Complex content items are " +
                            "possible.")
