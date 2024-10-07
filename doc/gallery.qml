@@ -154,12 +154,7 @@ S.Page {
 
                         property color normalColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
                         property color highlightColor: normalColor
-                        property color baseColor: {
-                            if (statusType == "online") "green"
-                            else if (statusType == "busy") "orange"
-                            else if (statusType == "away") "red"
-                            else S.Theme.secondaryColor
-                        }
+                        property color baseColor: chatModel.statusColor(statusType)
                     }
                 }
             }
@@ -271,12 +266,7 @@ S.Page {
                             color: highlighted ? highlightColor : baseColor
 
                             property color highlightColor: Qt.tint(baseColor, S.Theme.rgba(S.Theme.highlightColor, 0.5))
-                            property color baseColor: {
-                                if (statusType == "online") "green"
-                                else if (statusType == "busy") "orange"
-                                else if (statusType == "away") "red"
-                                else S.Theme.secondaryColor
-                            }
+                            property color baseColor: chatModel.statusColor(statusType)
                         }
                     }
                 }

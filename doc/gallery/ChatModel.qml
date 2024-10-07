@@ -8,6 +8,13 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0 as S
 
 ListModel {
+    function statusColor(statusType) {
+        if (statusType === "online") return "green"
+        else if (statusType === "busy") return "orange"
+        else if (statusType === "away") return "red"
+        else return S.Theme.secondaryColor
+    }
+
     ListElement {
         nick: qsTr("Jane")
         status: qsTr("online")
