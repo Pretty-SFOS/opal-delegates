@@ -22,6 +22,8 @@ import Sailfish.Silica 1.0
     that fades overflowing text, and a multi-line view
     that grows in height to fit all text.
 
+    \note eliding will be disabled if the text contains linebreaks (\c {\\n}).
+
     \sa PaddedDelegate, OneLineDelegate, TwoLineDelegate, ThreeLineDelegate,
         DelegateIconItem, DelegateInfoItem, DelegateColumn
 */
@@ -62,7 +64,7 @@ Label {
     states: [
         State {
             name: "wrapped"
-            when: root.wrapped
+            when: root.wrapped || text.indexOf('\n') > -1
 
             PropertyChanges {
                 target: root
