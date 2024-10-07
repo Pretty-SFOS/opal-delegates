@@ -33,7 +33,7 @@ import QtQuick 2.0
     Note that more specific values have higher priority than less
     specific values. In other words: by defining \l all and \l top
     you can set left, right, and bottom to the value of \l all, while
-    top get the value of \l top.
+    top gets the value of \l top.
 
     The same goes for \l leftRight and \l rightLeft, which have higher
     priority than \l all but lower priority than the four sides.
@@ -43,13 +43,25 @@ import QtQuick 2.0
 */
 QtObject {
     /*!
+      This property defines the value that is interpreted as “unset”.
+
+      It appears that Qt is converting Infinity to a valid integer, and
+      NaN to 0, so those values cannot be used directly as special values.
+      It is safe to assume that this number is never used as a valid value,
+      however.
+
+      \internal
+    */
+    property int _undefinedValue: Number(-Infinity)
+
+    /*!
       This property sets values for all four sides.
 
       Priority: lowest
 
       \defaultValue 0
     */
-    property int all
+    property int all: _undefinedValue
 
     /*!
       This property sets values for left and right.
@@ -58,7 +70,7 @@ QtObject {
 
       \defaultValue Theme.horizontalPageMargin
     */
-    property int leftRight  // default value is assigned in PaddedDelegate
+    property int leftRight: _undefinedValue  // default value is assigned in PaddedDelegate
 
     /*!
       This property sets values for top and bottom.
@@ -67,7 +79,7 @@ QtObject {
 
       \defaultValue Theme.paddingSmall
     */
-    property int topBottom
+    property int topBottom: _undefinedValue  // default value is assigned in PaddedDelegate
 
     /*!
       This property sets the top padding.
@@ -76,7 +88,7 @@ QtObject {
 
       \defaultValue 0
     */
-    property int top
+    property int top: _undefinedValue
 
     /*!
       This property sets the bottom padding.
@@ -85,7 +97,7 @@ QtObject {
 
       \defaultValue 0
     */
-    property int bottom
+    property int bottom: _undefinedValue
 
     /*!
       This property sets the left padding.
@@ -94,7 +106,7 @@ QtObject {
 
       \defaultValue 0
     */
-    property int left
+    property int left: _undefinedValue
 
     /*!
       This property sets the right padding.
@@ -103,39 +115,46 @@ QtObject {
 
       \defaultValue 0
     */
-    property int right
+    property int right: _undefinedValue
 
     /*!
       This property shows the effective top padding.
 
       This takes the values of \l all and \l topBottom in account.
     */
-    readonly property int effectiveTop: top > 0 ? top : _topBottom
+    readonly property int effectiveTop: _isDefined(top) ? top : _topBottom
 
     /*!
       This property shows the effective bottom padding.
 
       This takes the values of \l all and \l topBottom in account.
     */
-    readonly property int effectiveBottom: bottom > 0 ? bottom : _topBottom
+    readonly property int effectiveBottom: _isDefined(bottom) ? bottom : _topBottom
 
     /*!
       This property shows the effective left padding.
 
       This takes the values of \l all and \l leftRight in account.
     */
-    readonly property int effectiveLeft: left > 0 ? left : _leftRight
+    readonly property int effectiveLeft: _isDefined(left) ? left : _leftRight
 
     /*!
       This property shows the effective left padding.
 
       This takes the values of \l all and \l leftRight in account.
     */
-    readonly property int effectiveRight: right > 0 ? right : _leftRight
+    readonly property int effectiveRight: _isDefined(right) ? right : _leftRight
 
     // internal
-    readonly property int _topBottom: topBottom > 0 ? topBottom : all
+    readonly property int _all: _isDefined(all) ? all : 0
 
     // internal
-    readonly property int _leftRight: leftRight > 0 ? leftRight : all
+    readonly property int _topBottom: _isDefined(topBottom) ? topBottom : _all
+
+    // internal
+    readonly property int _leftRight: _isDefined(leftRight) ? leftRight : _all
+
+    function _isDefined(value) {
+        return value > _undefinedValue
+    }
 }

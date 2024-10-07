@@ -321,8 +321,8 @@ ListItem {
         readonly property int __defaultLeftRight: Theme.horizontalPageMargin
         readonly property int __defaultTopBottom: Theme.paddingSmall
 
-        leftRight: all == 0 && left == 0 && right == 0 ? __defaultLeftRight : 0
-        topBottom: all == 0 && top == 0 && bottom == 0 ? __defaultTopBottom : 0
+        leftRight: !_isDefined(all) && !_isDefined(left) && !_isDefined(right) ? __defaultLeftRight : NaN
+        topBottom: !_isDefined(all) && !_isDefined(top) && !_isDefined(bottom) ? __defaultTopBottom : NaN
     }
 
     /*!
