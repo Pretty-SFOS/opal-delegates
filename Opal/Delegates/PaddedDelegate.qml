@@ -397,6 +397,15 @@ ListItem {
             left: leftPaddingItem.right
             verticalCenter: parent.verticalCenter
         }
+
+        Binding {
+            target: !!leftItemLoader.item &&
+                    leftItemLoader.item.hasOwnProperty('_delegate') ?
+                        leftItemLoader.item : null
+            property: "_delegate"
+            value: root
+        }
+
         states: [
             State {
                 when: leftSideAlignment == Qt.AlignVCenter
@@ -432,6 +441,14 @@ ListItem {
         id: rightItemLoader
         sourceComponent: rightItem
         asynchronous: loadSideItemsAsync
+        Binding {
+            target: !!rightItemLoader.item &&
+                    rightItemLoader.item.hasOwnProperty('_delegate') ?
+                        rightItemLoader.item : null
+            property: "_delegate"
+            value: root
+        }
+
         states: [
             State {
                 when: rightSideAlignment == Qt.AlignVCenter
