@@ -357,20 +357,20 @@ ListItem {
         + padding.effectiveBottom
         + Math.max(leftItemLoader.height,
                    rightItemLoader.height,
-                   contentItem.childrenRect.height)
+                   contentItem.height)
         , minContentHeight
     )
 
     Item {
         id: topPaddingItem
-        anchors.top: parent.top
+        anchors.bottom: contentItem.top
         width: parent.width
         height: padding.effectiveTop
     }
 
     Item {
         id: bottomPaddingItem
-        anchors.bottom: parent.bottom
+        anchors.top: contentItem.bottom
         width: parent.width
         height: padding.effectiveBottom
     }
@@ -487,14 +487,14 @@ ListItem {
 
     SilicaItem {
         id: contentItem
+        height: Math.max(minContentHeight, childrenRect.height)
 
         anchors {
             left: leftItemLoader.right
             leftMargin: leftItemLoader.width > 0 ? spacing : 0
             right: rightItemLoader.left
             rightMargin: rightItemLoader.width > 0 ? spacing : 0
-            top: topPaddingItem.bottom
-            bottom: bottomPaddingItem.top
+            verticalCenter: parent.verticalCenter
         }
     }
 
