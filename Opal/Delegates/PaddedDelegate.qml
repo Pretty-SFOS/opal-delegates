@@ -183,7 +183,7 @@ ListItem {
 
       \note it takes up no space if left undefined.
 
-      \sa rightItem, DelegateIconItem, DelegateInfoItem
+      \sa rightItem, leftSideAlignment, DelegateIconItem, DelegateInfoItem, DelegateIconButton
     */
     property Component leftItem: null
 
@@ -214,7 +214,7 @@ ListItem {
 
       \note it takes up no space if left undefined.
 
-      \sa leftItem, DelegateIconItem, DelegateInfoItem
+      \sa leftItem, rightSideAlignment, DelegateIconItem, DelegateInfoItem, DelegateIconButton
     */
     property Component rightItem: null
 

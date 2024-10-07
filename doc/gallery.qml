@@ -271,6 +271,63 @@ S.Page {
                     }
                 }
             }
+
+            S.SectionHeader {
+                text: qsTr("Side elements")
+            }
+
+            GalleryLabel {
+                text: qsTr("All examples use components as side elements that are " +
+                                  "part of Opal.Delegates. Below is an example that shows how the " +
+                                  "“DelegateIconButton” component can be used.")
+            }
+
+            D.DelegateColumn {
+                model: chatModel
+
+                delegate: D.OneLineDelegate {
+                    text: nick
+                    showOddEven: emphasizeRows.checked
+                    interactive: false
+                    padding.topBottom: 0  // makes a small delegate more compact
+
+                    // This is the relevant part of this example.
+                    rightItem: D.DelegateIconButton {
+                        iconSource: "image://theme/icon-s-setting"
+                        iconSize: S.Theme.iconSizeSmall
+
+                        // Text is optional.
+                        // text: qsTr("Settings")
+
+                        // A fixed width can be set to align side items
+                        // if they differ in width.
+                        // width: S.Theme.itemSizeSmall
+
+                        onClicked: pageStack.push("EmptyDummyPage.qml")
+                    }
+
+                    // This code is just for illustration.
+                    leftItem: S.TextSwitch {
+                        checked: false
+                        down: false
+                        width: S.Theme.iconSizeSmall
+                        height: width
+                        leftMargin: 0
+                        rightMargin: 0
+                        palette.primaryColor: chatModel.statusColor(statusType)
+
+                        Binding {
+                            // This is a hack and may break at any time.
+                            // It overrides the fixed height of the indicator
+                            // item that would otherwise force the item to be
+                            // very large.
+                            target: _indicator().parent
+                            property: "height"
+                            value: height
+                        }
+                    }
+                }
+            }
         }
     }
 }
