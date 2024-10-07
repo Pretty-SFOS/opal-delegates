@@ -79,6 +79,8 @@ import Sailfish.Silica 1.0
 PaddedDelegate {
     id: root
     minContentHeight: Theme.itemSizeSmall
+                      - padding.effectiveTop
+                      - padding.effectiveBottom
     centeredContainer: contentContainer
 
     /*!
