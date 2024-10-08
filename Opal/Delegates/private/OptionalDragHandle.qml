@@ -7,7 +7,9 @@ import QtQuick 2.6
 // Important: the DragDrop module must be imported
 // via its path and not using the dot notation in
 // case the app developer has not enabled Opal dot imports.
-import "../../../../modules-devel/opal-dragdrop"
+//
+// This import path assumes that modules are installed to qml/modules/Opal/.
+import "../../DragDrop"
 
 DragHandle {
     id: root
