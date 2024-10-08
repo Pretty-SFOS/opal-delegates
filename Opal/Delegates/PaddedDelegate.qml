@@ -402,8 +402,8 @@ ListItem {
     }
 
     contentHeight: Math.max(
-          padding.effectiveTop
-        + padding.effectiveBottom
+          topPaddingItem.height
+        + bottomPaddingItem.height
         + Math.max(leftItemLoader.height,
                    rightItemLoader.height,
                    centerItem.height)
