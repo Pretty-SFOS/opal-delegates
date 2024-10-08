@@ -553,7 +553,7 @@ ListItem {
 
         source: !!_effectiveDragHandler ?
             Qt.resolvedUrl("private/OptionalDragHandle.qml") : ""
-        asynchronous: true
+        asynchronous: false
 
         height: contentHeight
         anchors {
