@@ -553,11 +553,12 @@ ListItem {
 
         source: !!_effectiveDragHandler ?
             Qt.resolvedUrl("private/OptionalDragHandle.qml") : ""
-
         asynchronous: true
+
+        height: contentHeight
         anchors {
             right: rightPaddingItem.left
-            verticalCenter: parent.verticalCenter
+            top: parent.top
         }
 
         Binding {
