@@ -201,7 +201,7 @@ ListItem {
       It is usually not necessary to change any properties
       of this item.
     */
-    readonly property alias centerItem: contentItem
+    readonly property alias centerItem: centerItem
 
     /*!
       This property defines an optional custom content item.
@@ -253,7 +253,7 @@ ListItem {
       It is usually not necessary to change any properties
       of this item.
     */
-    default property alias contents: contentItem.data
+    default property alias contents: centerItem.data
 
     /*!
       This property enables centering of the delegate's contents.
@@ -406,21 +406,21 @@ ListItem {
         + padding.effectiveBottom
         + Math.max(leftItemLoader.height,
                    rightItemLoader.height,
-                   contentItem.height)
+                   centerItem.height)
         , minContentHeight
     )
 
     Item {
         id: topPaddingItem
-        anchors.bottom: contentItem.top
-        width: parent.width
+        anchors.bottom: centerItem.top
+        width: root.width
         height: padding.effectiveTop
     }
 
     Item {
         id: bottomPaddingItem
-        anchors.top: contentItem.bottom
-        width: parent.width
+        anchors.top: centerItem.bottom
+        width: root.width
         height: padding.effectiveBottom
     }
 
@@ -428,14 +428,14 @@ ListItem {
         id: leftPaddingItem
         anchors.left: parent.left
         width: padding.effectiveLeft
-        height: parent.contentHeight
+        height: contentHeight
     }
 
     Item {
         id: rightPaddingItem
         anchors.right: parent.right
         width: padding.effectiveRight
-        height: parent.contentHeight
+        height: contentHeight
     }
 
     Loader {
@@ -570,7 +570,7 @@ ListItem {
     }
 
     SilicaItem {
-        id: contentItem
+        id: centerItem
         height: Math.max(minContentHeight, childrenRect.height)
 
         anchors {
@@ -584,11 +584,11 @@ ListItem {
         states: State {
             when: dragHandleLoader.visible
             AnchorChanges {
-                target: contentItem
+                target: centerItem
                 anchors.right: dragHandleLoader.left
             }
             PropertyChanges {
-                target: contentItem
+                target: centerItem
                 anchors.rightMargin: dragHandleLoader.width > 0 ? spacing : 0
             }
         }
