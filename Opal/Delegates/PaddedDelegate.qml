@@ -422,7 +422,7 @@ ListItem {
         value: "transparent"
     }
 
-    contentHeight: Math.max(
+    contentHeight: hidden ? 0 : Math.max(
           topPaddingItem.height
         + bottomPaddingItem.height
         + Math.max(leftItemLoader.height,
