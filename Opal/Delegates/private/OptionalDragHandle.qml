@@ -23,6 +23,18 @@ DragHandle {
     // set by PaddedDelegate
     property var _delegate
 
+    verticalPadding: {
+        if (!_delegate) {
+            return 0
+        } else if (_delegate.dragHandleAlignment === Qt.AlignTop) {
+            return _delegate.padding.effectiveTop
+        } else if (_delegate.dragHandleAlignment === Qt.AlignBottom) {
+            return _delegate.padding.effectiveBottom
+        } else {
+            return 0
+        }
+    }
+
     verticalAlignment: !!_delegate ?
         _delegate.dragHandleAlignment : Qt.AlignVCenter
 
