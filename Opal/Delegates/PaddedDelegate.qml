@@ -59,7 +59,7 @@ import "private"
     any binding loops on the item's height.
 
     The vertical alignment of side items can be changed through the
-    \l leftSideAlignment and \l rightSideAlignment properties. Side items are
+    \l leftItemAlignment and \l rightItemAlignment properties. Side items are
     vertically centered by default.
 
     \section2 Example
@@ -179,7 +179,7 @@ ListItem {
       left side of the delegate.
 
       The vertical alignment of side items can be changed through
-      the \l rightSideAlignment and \l leftSideAlignment properties.
+      the \l rightItemAlignment and \l leftItemAlignment properties.
 
       If the side item has a property called \c _delegate, it will
       be bound to the delegate object automatically. Important: the
@@ -187,7 +187,7 @@ ListItem {
 
       \note it takes up no space if left undefined.
 
-      \sa rightItem, leftSideAlignment, DelegateIconItem, DelegateInfoItem, DelegateIconButton
+      \sa rightItem, leftItemAlignment, DelegateIconItem, DelegateInfoItem, DelegateIconButton
     */
     property Component leftItem: null
 
@@ -210,7 +210,7 @@ ListItem {
       right side of the delegate.
 
       The vertical alignment of side items can be changed through
-      the \l rightSideAlignment and \l leftSideAlignment properties.
+      the \l rightItemAlignment and \l leftItemAlignment properties.
 
       If the side item has a property called \c _delegate, it will
       be bound to the delegate object automatically. Important: the
@@ -218,7 +218,7 @@ ListItem {
 
       \note it takes up no space if left undefined.
 
-      \sa leftItem, rightSideAlignment, DelegateIconItem, DelegateInfoItem, DelegateIconButton
+      \sa leftItem, rightItemAlignment, DelegateIconItem, DelegateInfoItem, DelegateIconButton
     */
     property Component rightItem: null
 
@@ -300,7 +300,7 @@ ListItem {
 
       \sa leftItem, rightItem
     */
-    property int rightSideAlignment: Qt.AlignVCenter
+    property int rightItemAlignment: Qt.AlignVCenter
 
     /*!
       This property defines the vertical alignment of the left side item.
@@ -312,7 +312,7 @@ ListItem {
 
       \sa leftItem, rightItem
     */
-    property int leftSideAlignment: Qt.AlignVCenter
+    property int leftItemAlignment: Qt.AlignVCenter
 
     /*!
       This group defines the outer padding around the delegate.
@@ -457,7 +457,7 @@ ListItem {
 
         states: [
             State {
-                when: leftSideAlignment == Qt.AlignVCenter
+                when: leftItemAlignment == Qt.AlignVCenter
                 AnchorChanges {
                     target: leftItemLoader
                     anchors.verticalCenter: leftItemLoader.parent.verticalCenter
@@ -466,7 +466,7 @@ ListItem {
                 }
             },
             State {
-                when: leftSideAlignment == Qt.AlignTop
+                when: leftItemAlignment == Qt.AlignTop
                 AnchorChanges {
                     target: leftItemLoader
                     anchors.verticalCenter: undefined
@@ -475,7 +475,7 @@ ListItem {
                 }
             },
             State {
-                when: leftSideAlignment == Qt.AlignBottom
+                when: leftItemAlignment == Qt.AlignBottom
                 AnchorChanges {
                     target: leftItemLoader
                     anchors.verticalCenter: undefined
@@ -507,7 +507,7 @@ ListItem {
 
         states: [
             State {
-                when: rightSideAlignment == Qt.AlignVCenter
+                when: rightItemAlignment == Qt.AlignVCenter
                 AnchorChanges {
                     target: rightItemLoader
                     anchors.verticalCenter: rightItemLoader.parent.verticalCenter
@@ -516,7 +516,7 @@ ListItem {
                 }
             },
             State {
-                when: rightSideAlignment == Qt.AlignTop
+                when: rightItemAlignment == Qt.AlignTop
                 AnchorChanges {
                     target: rightItemLoader
                     anchors.verticalCenter: undefined
@@ -525,7 +525,7 @@ ListItem {
                 }
             },
             State {
-                when: rightSideAlignment == Qt.AlignBottom
+                when: rightItemAlignment == Qt.AlignBottom
                 AnchorChanges {
                     target: rightItemLoader
                     anchors.verticalCenter: undefined
