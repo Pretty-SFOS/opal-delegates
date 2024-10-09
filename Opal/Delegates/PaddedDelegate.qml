@@ -298,7 +298,7 @@ ListItem {
 
       \defaultValue Qt.AlignVCenter
 
-      \sa leftItem, rightItem
+      \sa leftItem, rightItem, dragHandleAlignment
     */
     property int rightItemAlignment: Qt.AlignVCenter
 
@@ -310,7 +310,7 @@ ListItem {
 
       \defaultValue Qt.AlignVCenter
 
-      \sa leftItem, rightItem
+      \sa leftItem, rightItem, dragHandleAlignment
     */
     property int leftItemAlignment: Qt.AlignVCenter
 
@@ -350,6 +350,27 @@ ListItem {
     readonly property var _effectiveDragHandler: !!dragHandler
         && dragHandler.hasOwnProperty('__opal_view_drag_handler') ?
             dragHandler : null
+
+    /*!
+      This property defines the vertical alignment of the drag handle.
+
+      This value has no effect if drag and drop is not enabled on this
+      delegate. See \l dragHandler for details.
+
+      Allowed values are \l Qt.AlignVCenter, \l Qt.AlignTop,
+      and \l Qt.AlignBottom.
+
+      The default value depends on the value of \l leftItemAlignment and
+      \l rightItemAlignment. If either is set to \c Qt.AlignTop, the drag
+      handle will also default to \c Qt.AlignTop. Otherwise, the default
+      is \c Qt.AlignVCenter.
+
+      \defaultValue Qt.AlignVCenter
+
+      \sa dragHandler, leftItem, rightItem
+    */
+    property int dragHandleAlignment: leftItemAlignment === Qt.AlignTop ||
+        rightItemAlignment === Qt.AlignTop ? Qt.AlignTop : Qt.AlignVCenter
 
     /*!
       This property defines whether the right side item is hidden while dragging.

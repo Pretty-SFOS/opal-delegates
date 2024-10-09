@@ -23,6 +23,9 @@ DragHandle {
     // set by PaddedDelegate
     property var _delegate
 
+    verticalAlignment: !!_delegate ?
+        _delegate.dragHandleAlignment : Qt.AlignVCenter
+
     highlighted: !! _delegate && (
                      (   _delegate.interactive
                       && _delegate.down) ||
