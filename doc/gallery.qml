@@ -5,16 +5,16 @@
 //@ SPDX-License-Identifier: GPL-3.0-or-later
 
 import QtQuick 2.0
+import Opal.Gallery 1.0
 import Sailfish.Silica 1.0 as S
 import Opal.Delegates 1.0 as D
-import "gallery"
 
 S.Page {
     id: root
     allowedOrientations: S.Orientation.All
 
-    FruitModel { id: fruitModel }
-    ChatModel { id: chatModel }
+    GalleryFruitModel { id: fruitModel }
+    GalleryChatModel { id: chatModel }
 
     Component {
         id: dummyMenu
