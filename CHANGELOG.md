@@ -5,6 +5,13 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 # Changelog
 
+## 3.3.0 (2024-10-30)
+
+- Added `leftItemLoader` and `rightItemLoader` properties to access the actual side items
+- Fixed an issue where a label would get stuck with a height of 0 after clearing contents and setting new contents.
+- Fixed DelegateIconButton highlighting if it is used in a container
+- Moved the drag handle to the left of the right side item to use all available space more efficiently
+
 ## 3.2.0 (2024-10-10)
 
 - Removed unused translations (there are no translated strings in this module)
