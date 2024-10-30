@@ -58,6 +58,7 @@ Label {
         value: 0
     }
 
+    height: implicitHeight
     wrapMode: Text.NoWrap
     truncationMode: TruncationMode.Fade
 
