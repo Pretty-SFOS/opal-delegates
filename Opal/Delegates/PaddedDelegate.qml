@@ -468,6 +468,8 @@ ListItem {
             verticalCenter: parent.verticalCenter
         }
 
+        property Item __padded_delegate: root
+
         Binding {
             target: !!leftItemLoader.item &&
                     leftItemLoader.item.hasOwnProperty('_delegate') ?
@@ -517,6 +519,8 @@ ListItem {
             rightMargin: dragHandleLoader.width > 0 ? spacing : 0
             verticalCenter: parent.verticalCenter
         }
+
+        property Item __padded_delegate: root
 
         Binding {
             target: !!rightItemLoader.item &&

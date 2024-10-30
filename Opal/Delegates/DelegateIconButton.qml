@@ -119,9 +119,14 @@ SilicaItem {
     /*!
       This property gives access to the parent delegate.
 
+      The \c __padded_delegate variable is put into the context
+      by the side item loader, if this component is used as a
+      side item in a padded delegate.
+
       \internal
     */
-    property var _delegate
+    property Item _delegate: !!parent && parent._delegate ?
+        parent._delegate : (__padded_delegate || null)
 
     /*!
       This signal is emitted when the button is clicked.
