@@ -414,7 +414,7 @@ ListItem {
       by setting \l hideRightItemWhileDragging to \c false.
 
       When this property is set to \c false, the grab handle is shown to the
-      right of the right side item.
+      left of the right side item.
 
       \sa dragHandler, draggable
     */
@@ -549,8 +549,7 @@ ListItem {
         sourceComponent: rightItem
         asynchronous: loadSideItemsAsync
         anchors {
-            right: dragHandleLoader.left
-            rightMargin: dragHandleLoader.width > 0 ? spacing : 0
+            right: rightPaddingItem.left
             verticalCenter: parent.verticalCenter
         }
 
@@ -616,7 +615,8 @@ ListItem {
 
         height: contentHeight
         anchors {
-            right: rightPaddingItem.left
+            right: rightItemLoader.left
+            rightMargin: rightItemLoader.width > 0 ? root.spacing : 0
             top: parent.top
         }
 
