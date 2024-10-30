@@ -379,7 +379,7 @@ ListItem {
 
       \sa hideRightItemWhileDragging, draggable
     */
-    property var /*ViewDragHandler*/ dragHandler: null
+    property Item /*ViewDragHandler*/ dragHandler: null
 
     readonly property var _effectiveDragHandler: !!dragHandler
         && dragHandler.hasOwnProperty('__opal_view_drag_handler') ?
