@@ -192,6 +192,23 @@ ListItem {
     property Component leftItem: null
 
     /*!
+      This property provides access to the loader for the left side item.
+
+      Side items (\l leftItem and \l rightItem) are loaded independently
+      of the delegate's main content. If \l loadSideItemsAsync is \c true,
+      side items will be loaded asynchronously.
+
+      This property gives access to the \c Loader instance for this
+      side item. You can access the loaded item once it is ready via
+      the \c {Loader.item} property. Make sure the item is loaded before
+      accessing it, by verifying the loader's \c status property is
+      \c {Loader.Ready}.
+
+      \sa leftItem, rightItem, leftItemLoader, rightItemLoader, loadSideItemsAsync
+    */
+    readonly property alias leftItemLoader: leftItemLoader
+
+    /*!
       This property gives access to the central content item.
 
       All children of \l PaddedDelegate will be parented to
@@ -221,6 +238,23 @@ ListItem {
       \sa leftItem, rightItemAlignment, DelegateIconItem, DelegateInfoItem, DelegateIconButton
     */
     property Component rightItem: null
+
+    /*!
+      This property provides access to the loader for the right side item.
+
+      Side items (\l leftItem and \l rightItem) are loaded independently
+      of the delegate's main content. If \l loadSideItemsAsync is \c true,
+      side items will be loaded asynchronously.
+
+      This property gives access to the \c Loader instance for this
+      side item. You can access the loaded item once it is ready via
+      the \c {Loader.item} property. Make sure the item is loaded before
+      accessing it, by verifying the loader's \c status property is
+      \c {Loader.Ready}.
+
+      \sa leftItem, rightItem, leftItemLoader, rightItemLoader, loadSideItemsAsync
+    */
+    readonly property alias rightItemLoader: rightItemLoader
 
     /*!
       This property can be used to load side items asynchronously.
