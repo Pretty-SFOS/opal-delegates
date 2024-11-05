@@ -133,6 +133,11 @@ SilicaItem {
     */
     signal clicked(var mouse)
 
+    /*!
+      This signal is emitted when the button is held pressed for some time.
+    */
+    signal pressAndHold(var mouse)
+
     width: Math.max(label.implicitWidth, button.width)
     height: Math.max(button.height + label.effectiveHeight,
                      (!!_delegate && _delegate.minContentHeight ?
@@ -151,7 +156,11 @@ SilicaItem {
         z: -100
         anchors.fill: parent
         enabled: root.enabled
+
         onClicked: {
+            root.clicked(mouse)
+        }
+        onPressAndHold: {
             root.clicked(mouse)
         }
     }
@@ -172,6 +181,9 @@ SilicaItem {
             enabled: root.enabled
 
             onClicked: {
+                root.clicked(mouse)
+            }
+            onPressAndHold: {
                 root.clicked(mouse)
             }
 
