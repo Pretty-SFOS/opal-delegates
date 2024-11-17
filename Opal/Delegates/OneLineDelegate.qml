@@ -56,8 +56,7 @@ import Sailfish.Silica 1.0
     \section2 Custom content items
 
     Arbitrary extra content items can be appended at the bottom of the center
-    column by parenting them to the \l {PaddedDelegate::centeredContainer}
-    property.
+    column by parenting them to the \l {bodyColumn} property.
 
     \qml
     OneLineDelegate {
@@ -65,7 +64,7 @@ import Sailfish.Silica 1.0
         text: "My delegate"
 
         Image {
-            parent: delegate.centeredContainer
+            parent: delegate.bodyColumn
             source: "my-image.png"
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -75,6 +74,10 @@ import Sailfish.Silica 1.0
     The delegate will adapt its height automatically but if the extra content
     has a fixed height, consider setting the \l {PaddedDelegate::minContentHeight}
     property to a more fitting value.
+
+    Note: alternatively, you can also parent custom items to the
+    \l {PaddedDelegate::centeredContainer} property. However, you can change
+    column properties like spacing only through the \l {bodyColumn} property.
 
     \section2 Example
 
@@ -104,7 +107,7 @@ PaddedDelegate {
     minContentHeight: Theme.itemSizeSmall
                       - padding.effectiveTop
                       - padding.effectiveBottom
-    centeredContainer: contentContainer
+    centeredContainer: contentColumn
 
     /*!
       This property holds the text of the delegate.
@@ -124,12 +127,22 @@ PaddedDelegate {
     */
     readonly property alias textLabel: _line1
 
+    /*!
+      This property gives access to the body column at the center of the delegate.
+
+      You can use this property to add extra contents to the delegate by
+      parenting custom items to this property.
+
+      See \l {Custom content items} for an example.
+    */
+    readonly property alias bodyColumn: contentColumn
+
     Column {
         // Note: all contents are placed inside a column to avoid
         // a binding loop on the delegate's height property.
         // Directly setting the label as the centeredContainer does
         // not work.
-        id: contentContainer
+        id: contentColumn
         width: parent.width
 
         OptionalLabel {
