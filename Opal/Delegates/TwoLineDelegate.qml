@@ -58,6 +58,29 @@ import Sailfish.Silica 1.0
     are to show an icon or some additional info. For this, you can
     use \l DelegateIconItem and \l DelegateInfoItem respectively.
 
+    \section2 Custom content items
+
+    Arbitrary extra content items can be appended at the bottom of the center
+    column by parenting them to the \l {PaddedDelegate::centeredContainer}
+    property.
+
+    \qml
+    TwoLineDelegate {
+        id: delegate
+        text: "My delegate"
+
+        Image {
+            parent: delegate.centeredContainer
+            source: "my-image.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
+    \endqml
+
+    The delegate will adapt its height automatically but if the extra content
+    has a fixed height, consider setting the \l {PaddedDelegate::minContentHeight}
+    property to a more fitting value.
+
     \section2 Example
 
     \qml
