@@ -44,6 +44,9 @@ import Sailfish.Silica 1.0
     or \l fixedWidth. Otherwise the labels in a list of entries are unevenly
     centered.
 
+    The vertical alignment is managed through the parent delegate. See
+    \l {PaddedDelegate::leftItemAlignment} and \l {PaddedDelegate::rightItemAlignment}.
+
     \section2 Example
 
     \qml
@@ -93,6 +96,9 @@ Item {
 
       Allowed values are \l Qt.AlignHCenter, \l Qt.AlignLeft,
       and \l Qt.AlignRight.
+
+      The vertical alignment is managed through the parent delegate. See
+      \l {PaddedDelegate::leftItemAlignment} and \l {PaddedDelegate::rightItemAlignment}.
 
       \defaultValue Qt.AlignHCenter
     */

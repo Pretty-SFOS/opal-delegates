@@ -60,7 +60,8 @@ import "private"
 
     The vertical alignment of side items can be changed through the
     \l leftItemAlignment and \l rightItemAlignment properties. Side items are
-    vertically centered by default.
+    vertically centered by default. Their horizontal alignment is managed through
+    the items themselves. See e.g. \l {DelegateInfoItem::alignment}.
 
     \section2 Example
 
