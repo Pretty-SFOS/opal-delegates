@@ -52,7 +52,7 @@ QtObject {
 
       \internal
     */
-    property int _undefinedValue: Number(-Infinity)
+    property int _undefinedValue: -9999
 
     /*!
       This property sets values for all four sides.
@@ -122,39 +122,35 @@ QtObject {
 
       This takes the values of \l all and \l topBottom in account.
     */
-    readonly property int effectiveTop: _isDefined(top) ? top : _topBottom
+    readonly property int effectiveTop: top !== _undefinedValue ? top : _topBottom
 
     /*!
       This property shows the effective bottom padding.
 
       This takes the values of \l all and \l topBottom in account.
     */
-    readonly property int effectiveBottom: _isDefined(bottom) ? bottom : _topBottom
+    readonly property int effectiveBottom: bottom !== _undefinedValue ? bottom : _topBottom
 
     /*!
       This property shows the effective left padding.
 
       This takes the values of \l all and \l leftRight in account.
     */
-    readonly property int effectiveLeft: _isDefined(left) ? left : _leftRight
+    readonly property int effectiveLeft: left !== _undefinedValue ? left : _leftRight
 
     /*!
       This property shows the effective left padding.
 
       This takes the values of \l all and \l leftRight in account.
     */
-    readonly property int effectiveRight: _isDefined(right) ? right : _leftRight
+    readonly property int effectiveRight: right !== _undefinedValue ? right : _leftRight
 
     // internal
-    readonly property int _all: _isDefined(all) ? all : 0
+    readonly property int _all: all !== _undefinedValue ? all : 0
 
     // internal
-    readonly property int _topBottom: _isDefined(topBottom) ? topBottom : _all
+    readonly property int _topBottom: topBottom !== _undefinedValue ? topBottom : _all
 
     // internal
-    readonly property int _leftRight: _isDefined(leftRight) ? leftRight : _all
-
-    function _isDefined(value) {
-        return value > _undefinedValue
-    }
+    readonly property int _leftRight: leftRight !== _undefinedValue ? leftRight : _all
 }
