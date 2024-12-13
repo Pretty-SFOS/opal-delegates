@@ -15,8 +15,7 @@ import Sailfish.Silica 1.0
     \brief A label that hides itself when empty.
 
     This text label takes up no space when its \c text
-    property is empty. However, you can access the
-    text's dimensions via the \l metrics property.
+    property is empty.
 
     The label can toggle between a styled one-line view
     that fades overflowing text, and a multi-line view
@@ -39,19 +38,6 @@ Label {
       \defaultValue false
     */
     property bool wrapped: false
-
-    /*!
-      This property gives access to text metrics.
-
-      \sa TextMetrics
-    */
-    property alias metrics: metricsItem
-
-    TextMetrics {
-        id: metricsItem
-        font: root.font
-        text: root.text
-    }
 
     Binding on height {
         when: text == ''

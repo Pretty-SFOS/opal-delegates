@@ -338,7 +338,7 @@ Item {
                 target: _line0
                 width: fixedWidth
                 wrapped: false
-                horizontalAlignment: _line0.metrics.width > fixedWidth ?
+                horizontalAlignment: _line0.contentWidth > fixedWidth ?
                                          Text.AlignLeft : __textAlignment
             }
 
@@ -352,7 +352,7 @@ Item {
                 target: _line1
                 width: fixedWidth
                 wrapped: false
-                horizontalAlignment: _line1.metrics.width > fixedWidth ?
+                horizontalAlignment: _line1.contentWidth > fixedWidth ?
                                          Text.AlignLeft : __textAlignment
             }
 
@@ -366,7 +366,7 @@ Item {
                 target: _line2
                 width: fixedWidth
                 wrapped: false
-                horizontalAlignment: _line2.metrics.width > fixedWidth ?
+                horizontalAlignment: _line2.contentWidth > fixedWidth ?
                                          Text.AlignLeft : __textAlignment
             }
 
