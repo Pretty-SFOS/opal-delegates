@@ -382,7 +382,7 @@ ListItem {
     */
     property Item /*ViewDragHandler*/ dragHandler: null
 
-    readonly property var _effectiveDragHandler: !!dragHandler
+    readonly property Item _effectiveDragHandler: !!dragHandler
         && dragHandler.hasOwnProperty('__opal_view_drag_handler') ?
             dragHandler : null
 
