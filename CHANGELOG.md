@@ -5,6 +5,15 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 # Changelog
 
+## 3.4.0 (2025-03-11)
+
+- Added `pressAndHold` signal to `DelegateIconButton`
+- Added `bodyColumn` property to `PaddedDelegate` for accessing delegate's body
+- Removed unused `metrics` property from `OptionalLabel` to slightly increase performance
+- Fixed width calculation of `TwoLineDelegate`
+- Fixed type of internal properties for performance
+- Updated documentation for clarity
+
 ## 3.3.0 (2024-10-30)
 
 - Added `leftItemLoader` and `rightItemLoader` properties to access the actual side items
