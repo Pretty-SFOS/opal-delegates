@@ -5,6 +5,11 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 # Changelog
 
+## 3.4.1 (2025-06-11)
+
+- Fixed `TwoLineDelegate` labels overflowing to the right when using left side items.
+  This reverts the "fix" introduced to `TwoLineDelegate`'s width calculation in v3.4.0.
+
 ## 3.4.0 (2025-03-11)
 
 - Added `pressAndHold` signal to `DelegateIconButton`
