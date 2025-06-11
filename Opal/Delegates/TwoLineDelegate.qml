@@ -175,7 +175,7 @@ PaddedDelegate {
 
     Column {
         id: contentColumn
-        width: root.width
+        width: parent.width
 
         // Important: setting this here creates a binding loop
         // on the delegate's height property. Instead, use the
