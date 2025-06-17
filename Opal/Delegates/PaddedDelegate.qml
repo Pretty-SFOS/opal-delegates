@@ -128,10 +128,13 @@ ListItem {
       If \c true, delegates will use alternating background colors
       to make rows visually more distinct.
 
-      It is usually preferably to not use this feature. Instead, try to
-      make your delegates look clear on their own.
+      It is better design to make delegates look clear and easily
+      distinguishable on their own. This feature is intended as a last resort,
+      or for special cases.
 
       \defaultValue false
+
+      \sa oddColor, evenColor, emphasisBackground
     */
     property bool showOddEven: false
 
@@ -140,7 +143,7 @@ ListItem {
 
       This value is only used if \l showOddEven is set to \c true.
 
-      \defaultValue \c "transparent"
+      \defaultValue "transparent"
     */
     property color oddColor: "transparent"
 
