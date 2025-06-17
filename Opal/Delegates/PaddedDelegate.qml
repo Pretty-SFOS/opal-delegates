@@ -153,6 +153,17 @@ ListItem {
     */
     property color evenColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.opacityLow)
 
+    /*!
+      Background rectangle for emphasizing rows.
+
+      This item is only used if \l showOddEven is set to \c true. You can
+      use this to customize the background further, beyond simply changing its
+      color.
+
+      \sa showOddEven, oddColor, evenColor
+    */
+    property alias emphasisBackground: emphasisBackground
+
     // internal
     property bool _isOddRow: typeof index !== 'undefined' && (index % 2 != 0)
 
