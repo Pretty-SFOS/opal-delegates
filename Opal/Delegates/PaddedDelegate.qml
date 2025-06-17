@@ -660,14 +660,9 @@ ListItem {
         anchors.fill: parent
 
         visible: showOddEven
-        radius: Theme.paddingSmall
+        radius: 0
         opacity: Theme.opacityFaint
         color: _isOddRow ? oddColor : evenColor
-
-        border {
-            color: "transparent"
-            width: radius / 2
-        }
     }
 
     states: [
