@@ -177,7 +177,7 @@ ListItem {
       This property defines whether the delegate is interactive.
 
       Setting this to \c false will switch to non-interactive
-      styling.
+      styling. This means \l highlighted will be set to \c true.
 
       \note context menu and click signals are still
       handled. To avoid confusion, do not set the \c onClicked
