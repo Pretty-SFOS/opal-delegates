@@ -5,6 +5,16 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 # Changelog
 
+## 3.5.0 (2025-06-17)
+
+- Add support for custom drag handle implementations (see `enableDefaultGrabHandle`)
+- Cleaned up styling for emphasized rows
+  - Removed rounded corners from default emphasis background
+  - Toned down the default color of even rows
+  - Added property `emphasisBackground` to allow full customization of the
+    background of even/odd rows
+- Clarified documentation and fixed a few typos
+
 ## 3.4.1 (2025-06-11)
 
 - Fixed `TwoLineDelegate` labels overflowing to the right when using left side items.

@@ -11,7 +11,7 @@
 #
 
 # current semantic version number, cf. https://semver.org
-version: 3.4.1
+version: 3.5.0
 
 # plain name as used in the module repository URL, will be prefixed with "opal-"
 # where necessary
@@ -32,7 +32,7 @@ description: This module provides list items for views, so you can concentrate o
 
 # attribution string for the whole module, in the same form as a SPDX
 # FileCopyrightText entry.
-attribution: 2023 Peter G. (nephros):2024 Mirian Margiani (ichthyosaurus)
+attribution: 2024-2025 Mirian Margiani (ichthyosaurus):2023 Peter G. (nephros)
 
 # colon-separated list of this module's current maintainer(s)
 maintainers: Mirian Margiani
