@@ -149,9 +149,9 @@ ListItem {
 
       This value is only used if \l showOddEven is set to \c true.
 
-      \defaultValue Theme.highlightBackgroundColor
+      \defaultValue Theme.rgba(Theme.highlightBackgroundColor, Theme.opacityLow)
     */
-    property color evenColor: Theme.highlightBackgroundColor
+    property color evenColor: Theme.rgba(Theme.highlightBackgroundColor, Theme.opacityLow)
 
     // internal
     property bool _isOddRow: typeof index !== 'undefined' && (index % 2 != 0)
