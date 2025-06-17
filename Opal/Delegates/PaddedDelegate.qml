@@ -422,6 +422,14 @@ ListItem {
         rightItemAlignment === Qt.AlignTop ? Qt.AlignTop : Qt.AlignVCenter
 
     /*!
+      This property defines whether to use the default grab handle.
+
+      Set this property to \c false if you want to implement a custom drag handle.
+      See the \c Opal.DragDrop documentation for how to use \c DragHandle.
+    */
+    property bool enableDefaultGrabHandle: true
+
+    /*!
       This property defines whether the right side item is hidden while dragging.
 
       When the drag handler is active, the right side item is hidden and the
@@ -433,7 +441,7 @@ ListItem {
 
       \sa dragHandler, draggable
     */
-    property bool hideRightItemWhileDragging: true
+    property bool hideRightItemWhileDragging: enableDefaultGrabHandle
 
     /*!
       This property shows whether the item is draggable.
@@ -611,7 +619,7 @@ ListItem {
 
     Loader {
         id: dragHandleLoader
-        visible: status === Loader.Ready && draggable
+        visible: enableDefaultGrabHandle && status === Loader.Ready && draggable
 
         // set as context for the drag handle
         // The values must be passed on like this because it is
@@ -624,7 +632,7 @@ ListItem {
         property Item handledItem: root
         property int modelIndex: root._modelIndex
 
-        source: !!_effectiveDragHandler ?
+        source: !!_effectiveDragHandler && enableDefaultGrabHandle ?
             Qt.resolvedUrl("private/OptionalDragHandle.qml") : ""
         asynchronous: false
 
