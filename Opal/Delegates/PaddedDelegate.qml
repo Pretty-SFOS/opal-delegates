@@ -650,6 +650,20 @@ ListItem {
             property: "_delegate"
             value: root
         }
+
+        states: [
+            State {
+                when: !rightItemLoader.visible
+                AnchorChanges {
+                    target: dragHandleLoader
+                    anchors.right: rightPaddingItem.left
+                }
+                PropertyChanges {
+                    target: dragHandleLoader
+                    anchors.rightMargin: 0
+                }
+            }
+        ]
     }
 
     SilicaItem {
