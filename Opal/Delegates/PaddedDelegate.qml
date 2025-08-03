@@ -455,7 +455,7 @@ ListItem {
     /*!
       This function toggles text wrapping in text labels.
 
-      Provide a \l OptionalLabel as argument to toggle its
+      Provide a \l OptionalLabel as \a label argument to toggle its
       text wrapping mode.
 
       You can also manually set the \l {OptionalLabel::wrapped}
