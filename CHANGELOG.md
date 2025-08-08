@@ -5,9 +5,14 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 # Changelog
 
+## 3.5.1 (2025-08-08)
+
+- Fixed drag handle padding when using right side items
+- Fixed a warning when building the documentation
+
 ## 3.5.0 (2025-06-17)
 
-- Add support for custom drag handle implementations (see `enableDefaultGrabHandle`)
+- Added support for custom drag handle implementations (see `enableDefaultGrabHandle`)
 - Cleaned up styling for emphasized rows
   - Removed rounded corners from default emphasis background
   - Toned down the default color of even rows
