@@ -335,6 +335,8 @@ ListItem {
 
       This value is ignored if no side items are defined.
 
+      \defaultValue Theme.paddingMedium
+
       \sa leftItem, rightItem
     */
     property int spacing: Theme.paddingMedium

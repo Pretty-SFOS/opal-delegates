@@ -30,9 +30,9 @@ briefDescription: QML module for easy to use view delegates in Sailfish apps
 # Opal Gallery. Line breaks can included with '\n' but should be avoided.
 description: This module provides list items for views, so you can concentrate on handling the data, not formatting the presentation.
 
-# attribution string for the whole module, in the same form as a SPDX
-# FileCopyrightText entry.
-attribution: 2024-2025 Mirian Margiani (ichthyosaurus):2023 Peter G. (nephros)
+# colon-separated list of attribution strings for the whole module, in the same
+# form as SPDX FileCopyrightText entries
+attribution: 2024-2025 Mirian Margiani:2023 Peter G. (nephros)
 
 # colon-separated list of this module's current maintainer(s)
 maintainers: Mirian Margiani
