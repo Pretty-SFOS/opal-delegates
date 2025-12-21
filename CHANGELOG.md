@@ -5,6 +5,11 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 # Changelog
 
+## 3.5.2 (2025-12-21)
+
+- Updated packaging to be easier to integrate into new projects
+- Minor documentation fixes
+
 ## 3.5.1 (2025-08-08)
 
 - Fixed drag handle padding when using right side items
