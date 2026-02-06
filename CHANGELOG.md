@@ -5,6 +5,13 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 # Changelog
 
+## 3.6.0 (2026-02-06)
+
+- Added a new `modelIndex` property that exposes the delegate's `index` pseudo-property
+  if it exists. This is useful when you need access to the delegate's index from
+  a different context, e.g. in a callback function.
+- Fixed binding loops on `height` in `DelegateInfoItem`
+
 ## 3.5.3 (2025-12-23)
 
 - Fixed packaging to actually include `opal.pri` and `.gitignore` files for
