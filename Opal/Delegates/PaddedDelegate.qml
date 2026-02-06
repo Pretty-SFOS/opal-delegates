@@ -174,6 +174,18 @@ ListItem {
     readonly property int _modelIndex: typeof index !== 'undefined' ? index : -1
 
     /*!
+      This property exposes the delegate's \c index property.
+
+      If an implicit \c index property is provided by the delegate's model, it
+      can be accessed via this actual property. If no \c index is available, this
+      will default to \c -1.
+
+      This is useful when deleting an item through \c remorseDelete in a context
+      menu, where the original delegate's context is may not be available.
+    */
+    readonly property int modelIndex: _modelIndex
+
+    /*!
       This property defines whether the delegate is interactive.
 
       Setting this to \c false will switch to non-interactive
