@@ -1,6 +1,6 @@
 //@ This file is part of opal-delegates.
 //@ https://github.com/Pretty-SFOS/opal-delegates
-//@ SPDX-FileCopyrightText: 2024 Mirian Margiani
+//@ SPDX-FileCopyrightText: 2024-2026 Mirian Margiani
 //@ SPDX-License-Identifier: GPL-3.0-or-later
 
 import QtQuick 2.5
@@ -28,12 +28,14 @@ import Sailfish.Silica 1.0
 
     \section2 Sizing behaviour
 
-    By default, the item will grow in width to fit all contents. It will
+    By default, the item will grow in \b width to fit all contents. It will
     also slim down to the size defined in \l minWidth if the
     labels are short.
 
     You can set the \l fixedWidth property to disable this behaviour.
     In that case, overflowing text will fade out to fit in.
+
+    The item grows in \b height to fit all contents.
 
     \section2 Content alignment
 
@@ -68,7 +70,7 @@ import Sailfish.Silica 1.0
 Item {
     id: root
     width: Math.max(column.width, minWidth)
-    height: Math.max(parent.height, column.height)
+    height: column.height
 
     /*!
       This property defines the minimum width of the item.
@@ -175,11 +177,12 @@ Item {
 
     Column {
         id: column
+
         width: Math.max(_line0.width, _line1.width, _line2.width)
-        height: Math.max(root.parent.height
-                         , _line0.height
-                         + _line1.height
-                         + _line2.height)
+        height:   _line0.height
+                + _line1.height
+                + _line2.height
+
         anchors {
             horizontalCenter: parent.horizontalCenter
             verticalCenter: parent.verticalCenter
