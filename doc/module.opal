@@ -24,7 +24,7 @@ nameStyled: Delegates
 # very short description of this module: must be plain text without formatting
 # and should be as short as possible. This text may be used as the description
 # of a Git repository, and is used in documentation.
-briefDescription: QML module for easy to use view delegates in Sailfish apps
+briefDescription: QML module for easy-to-use view delegates in Sailfish apps
 
 # description of this module: may use rich text and will be translated in
 # Opal Gallery. Line breaks can included with '\n' but should be avoided.
